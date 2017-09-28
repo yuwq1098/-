@@ -1,3 +1,8 @@
+var webpack = require("webpack")
+
+const vueLoader = webpackConfig.module.rules.find((rule) => rule.loader === 'vue-loader')
+vueLoader.options.loaders.sass = 'vue-style-loader!css-loader!sass-loader';
+
 module.exports = {
     /*
      ** Headers of the page
@@ -23,6 +28,12 @@ module.exports = {
     router: {
         middleware: 'stats'
     },
+    postcss: [
+        require('postcss-nested')(),
+        require('postcss-responsive-type')(),
+        require('postcss-hexrgba')(),
+    ],
+
     /*
      ** Build configuration
      */
@@ -39,7 +50,18 @@ module.exports = {
                     exclude: /(node_modules)/
                 })
             }
-        }
+        },
+        /**
+         * 引入你的插件
+         */
+        plugins: [
+            new webpack.ProvidePlugin({
+                '$': 'jquery',
+                '_': 'lodash'
+                    // ...etc.
+            })
+        ],
+
     }
 
 }

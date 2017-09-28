@@ -1,6 +1,7 @@
 <template>
   <div class="container" ref="usersId">
     {{title}} 页面参数id为{{id}}
+    <div id="myNewContainer"></div>
   </div>
 </template>
 
@@ -30,6 +31,15 @@ export default {
     var theColor = colors[Math.floor(Math.random() * colors.length)];
     console.log(theColor)
     this.$refs.usersId.style.backgroundColor = theColor;
+    // 调用初始化方法
+    this.init();
+  },
+  methods:{
+    init(){
+      $("#myNewContainer").html("蛋疼的紧");
+      var theArr = ["a","b","c","d","e"];
+      console.log(_.chunk(theArr, 2));
+    }
   }
 }
 </script>
