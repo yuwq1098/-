@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- <title>Document</title> -->
+	
+</head>
+<style type="text/css">
+    #Layer_1,#Layer_2{
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    }
+    #Layer_1 polygon{
+        stroke: #ccc;
+        stroke-width: 3;
+        fill: rgba(255,255,255,0);
+		transition: .6s;
+    }
+    #Layer_2 polygon{
+        stroke: black;
+        stroke-width: 3;
+        fill: rgba(255,25,25,.5);
+        stroke-dasharray: 10,50,2,100,10;
+		stroke-dashoffset: 100;
+		fill-opacity: 0;
+		transition: .6s;
+    }
+    .effet-container:hover #Layer_2 polygon{
+        fill-opacity: 1;
+        stroke-dashoffset: 0;
+    }
+	.u-buttonEffet{
+		width:  280px;
+		height:  60px;
+		background:  #fff;
+		color:  #ddd;
+		border: 3px solid rgba(181, 221, 70, 0.88);
+		text-align:  center;
+		font: 24px/54px 'Microsoft YaHei';
+	}
+</style>
+<body>
+    <div class="effet-container">
+		<button class="u-buttonEffet">一个按钮</button>
+		
+		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			width="600px" height="300px" viewBox="0 0 1200 600" enable-background="new 0 0 200 150" xml:space="preserve">
+			<polygon points="89.571,6.648 513.333,6.648 590.25,75.342 553.002,215.306 313.065,273.358 300,293.352 288.876,272.71 
+			48.936,215.306 9.75,75.342 "/>
+		</svg>
+        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			width="600px" height="300px" viewBox="0 0 600 300" enable-background="new 0 0 600 300" xml:space="preserve">
+		    <polygon points="89.571,6.648 513.333,6.648 590.25,75.342 553.002,215.306 313.065,273.358 300,293.352 288.876,272.71 
+			48.936,215.306 9.75,75.342 "/>
+		</svg>
+        
+    </div>
+</body>
+<script  type="text/javascript">
+    
+</script>
+</html>

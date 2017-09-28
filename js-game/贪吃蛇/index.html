@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <canvas id=""></canvas> -->
+    <canvas id="can" width="400" height="400" style="background: black"></canvas>
+    <!-- <script>
+        var sn = [ 42, 41 ], dz = 43, fx = 1, n , ctx = document.getElementById("can").getContext("2d");
+    
+        function draw(t, c) {  
+            ctx.fillStyle = c;  
+            ctx.fillRect(t % 20 * 20 + 1, ~~(t / 20) * 20 + 1, 18, 18);  
+        }  
+        document.onkeydown = function(e) {  
+            fx = sn[1] - sn[0] == (n = [ -1, -20, 1, 20 ][(e || event).keyCode - 37] || fx) ? fx : n  
+        };  
+        !function() {  
+            sn.unshift(n = sn[0] + fx);  
+            if (sn.indexOf(n, 1) > 0 || n<0||n>399 || fx == 1 && n % 20 == 0 || fx == -1 && n % 20 == 19){
+                return alert("GAME OVER");
+            }
+            draw(n, "Lime");  
+            if (n == dz) {  
+                while (sn.indexOf(dz = ~~(Math.random() * 400)) >= 0);  
+                draw(dz, "Yellow");  
+            } else {
+                draw(sn.pop(), "Black"); 
+            }
+            setTimeout(arguments.callee, 130);
+            
+        }();
+    
+    </script> -->
+    <script type="text/javascript">
+        ~function(){
+            class Functor {
+                constructor(val) { 
+                    this.val = val; 
+                }
+
+                map(f) {
+                    return new Functor(f(this.val));
+                }
+            }
+            Functor.add = function(val) {
+              return new Functor(val);
+            };
+
+            class Maybe extends Functor {
+                map(f) {
+                    console.log("有值")
+                    return this.val ? Maybe.add(f(this.val)) : Maybe.add(null);
+                }
+            }
+            // var newVal = (new Functor(2)).map(function(params){
+            //     return params * 3;
+            // })
+            // console.log(newVal.val);
+
+            
+
+            // var newVal1 = Functor.add(2).map(function (two) {
+            //   return two + 2;
+            // });
+            // console.log(newVal1.val);
+
+            // var newVal2 = Functor.add("yuwq").map(function (s) {
+            //     return s.toUpperCase();
+            // });
+            // console.log(newVal2);
+
+            // var newVal3 = Maybe.add("oppo").map(function (s) {
+            //     return s.toUpperCase();
+            // });
+            // console.log(newVal3);
+
+            class Either extends Functor {
+
+                constructor(left, right) {
+                    this.left = left;
+                    this.right = right;
+                }
+
+                map(f) {
+                    console.log(this.right)
+                    return this.right ? 
+                        Either.of(this.left, f(this.right)) :
+                        Either.of(f(this.left), this.right);
+                }
+            }
+
+            Either.of = function (left, right) {
+                return new Either(left, right);
+            };
+
+            var addOne = function(x){
+                return x + 1;
+            }
+
+            var newVal4 = Either.of(5,7).map(addOne);
+            console.log(newVal4)
+            // var newVal5 = Either.of(1,null).map(addOne);
+            // console.log(newVal5)
+
+
+        }();
+    </script>
+</body>
+</html>

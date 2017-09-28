@@ -1,0 +1,1 @@
+module.exports = "this works file is module.js"
