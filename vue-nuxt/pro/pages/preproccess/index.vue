@@ -3,6 +3,7 @@
     h1.red Hello {{ name }}!
     div.oppo 我是一个div
     section.desc-content 不可醉心于此
+    p.myc html5知识还不够，css3学的还凑和，
 </template>
 
 <script lang="coffee">
