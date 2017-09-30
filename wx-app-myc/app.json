@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/hall/index",
+    "pages/welcome/welcome",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#222",
+    "navigationBarTitleText": "木有车B2B",
+    "navigationBarTextStyle": "#fff",
+    "backgroundTextStyle": "light"
+  }
+}

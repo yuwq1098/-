@@ -1,0 +1,84 @@
+<!--pages/hall/index.wxml-->
+<view class="hall-container">
+  <scroll-view>
+    <!-- 搜索区 -->
+    <view class='search-box'>
+      <!-- 城市选择 -->
+      <view class='city-select'>
+        <text>南昌zzzzzzz</text>
+        <image src='/static/icon/i-arrow-down.png'></image>
+      </view>
+      <!-- 输入框 -->
+      <view class='input-box'>
+        <input placeholder="请搜索： 车辆、品牌、车型" />
+      </view>
+      <!-- 搜索按钮 -->
+      <view class='search-btn'>
+        <image src='/static/icon/i-search.png'></image>
+      </view>
+    </view>
+    <!-- 轮播区 -->
+    <view class="slide-box">
+      <swiper vertical="{{slideData.vertical}}" indicator-dots="{{slideData.indicatorDots}}" indicator-color="{{slideData.indicatorColor}}" indicator-active-color="{{slideData.indicatorActiveColor}}" autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}"
+        duration="{{slideData.duration}}" circular="{{slideData.loop}}">
+        <block wx:for="{{[1,2,3,4,5]}}" wx:item="item" wx:key="item">
+          <swiper-item>
+            <image src="/static/images/slide-img0{{item}}.png" data-slideId="{{item}}"></image>
+          </swiper-item>
+        </block>
+
+      </swiper>
+    </view>
+    <!-- 信息筛选区 -->
+    <view class='info-filter-box'>
+      <ul class="filter-list">
+        <li>
+          <text>默认排序</text>
+          <image src='/static/icon/i-arrow-down.png'></image>
+        </li>
+        <li>
+          <text>不限品牌</text>
+          <image src='/static/icon/i-arrow-down.png'></image>
+        </li>
+        <li>
+          <text>全部价格</text>
+          <image src='/static/icon/i-arrow-down.png'></image>
+        </li>
+        <li>
+          <text>排放方式</text>
+          <image src='/static/icon/i-arrow-down.png'></image>
+        </li>
+      </ul>
+    </view>
+    <!-- 车辆信息列表去 -->
+    <view class='b2b-car-list-box'>
+      <ul class="car-list">
+        <block wx:for="{{[1,2,3,4]}}" wx:item="item" wx:key="item">
+          <li class="item">
+            <view class='main-info'>
+              <view class="car-pic">
+                <image src='/static/images/b2b-car0{{item}}.png'></image>
+              </view>
+              <view class="info">
+                <view class='title'>保时捷Panamera 2010款 panamera</view>
+                <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
+                <view class='price'>
+                  <span class="normal-price">零售价3.00万</span>
+                  <span class="tips">请下载app查看批发价</span>
+                </view>
+              </view>
+            </view>
+            <view class='other-info'>
+              <div class="lt">
+                <div class="CDG-label">合作商</div>
+                <div class="CDG-name">鼎兴名车广场</div>
+              </div>
+              <div class="rt">10天前上架</div>
+            </view>
+          </li>
+        </block>
+      </ul>
+    </view>
+  </scroll-view>
+</view>
+<!-- B2B大厅 -->

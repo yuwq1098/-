@@ -1,0 +1,35 @@
+/**app.wxss**/
+
+page {
+  display: block;
+  min-height: 100%;
+  background: #fff;
+}
+
+/* 文字选中时的颜色 */
+.text-active-color{
+  color: #31A3F5;
+}
+
+.f__clearfix{
+   display: table;
+   zoom: 1;
+}
+.f__clearfix::after{
+    visibility: hidden;
+    display: block;
+    font-size: 0; 
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+/* .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 200rpx 0;
+    box-sizing: border-box;
+} */

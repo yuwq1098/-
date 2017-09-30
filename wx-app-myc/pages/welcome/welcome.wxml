@@ -1,0 +1,9 @@
+<!--欢迎来到木有车小程序-->
+<view class='container welcome-container'>
+    <view class='welcome-bg-image'>
+        <image src="/static/images/welcome-to-myc.jpg"></image>
+    </view>
+    <view class='enter-btn' bindtap='enterMYC'>
+        <text>前往木有车B2B大厅</text>
+    </view>
+</view>

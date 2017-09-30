@@ -15,4 +15,5 @@ module.exports = function() {
     container.appendChild(vitalDom);
 
     return container;
+
 };

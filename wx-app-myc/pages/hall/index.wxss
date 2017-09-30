@@ -1,0 +1,169 @@
+/* pages/hall/index.wxss */
+page{
+  background: #f2f2f2;
+}
+.hall-container{
+    width: 100%;
+}
+
+/* 大厅搜索区 */
+.hall-container .search-box{
+    position: relative;
+    height: 80rpx;
+    background: #fff;
+}
+.hall-container .search-box .city-select{
+    float: left;
+    padding: 0 15rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:  start;  
+
+}
+.search-box .city-select text{
+     font-size: 28rpx;
+    line-height: 80rpx;
+    float: left;
+    color: #666;
+    
+}
+.search-box .city-select image{
+    width: 24rpx;
+    height: 24rpx;
+    margin-left: 6rpx;
+}
+.hall-container .search-box .input-box{
+    overflow: hidden;
+    height: 80rpx;
+    position: relative;
+    box-sizing: border-box;
+    padding-right: 80rpx;
+}
+.search-box .input-box input{
+    width: 100%;
+    height: 48rpx;
+    border: none;
+    margin-top: 16rpx;
+    background: #f2f2f2;
+    -webkit-border-radius: 5rpx;
+    border-radius: 5rpx;
+    font-size: 28rpx;
+    color: #333;
+    box-sizing: border-box;
+    padding: 0 15rpx;
+}
+.hall-container .search-box .search-btn{
+    width: 44rpx;
+    height: 44rpx;
+    position: absolute;
+    right: 18rpx;
+    top: 18rpx;
+}
+.search-box .search-btn image{
+    width: 48rpx;
+    height: 48rpx;
+}
+
+/* 轮播区域 */
+.slide-box{
+  height: 310rpx;
+  background: #e2e2e2;
+}
+.slide-box swiper{
+  height: 310rpx;
+  width: 100%;
+}
+ .slide-box image{
+  width: 100%;
+  height: 100%;
+}  
+
+/* 信息筛选区域 */
+.info-filter-box{
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #fff;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+.filter-list{
+  display: flex;
+  padding: 0 4rpx;
+}
+.filter-list li{
+  height: 72rpx;
+  flex: 1;
+  text-align: center;
+  position: relative;
+  padding: 0 1px 0 0;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+}
+.filter-list li image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 6rpx;
+}
+
+.filter-list li:not(:last-child)::after{
+  content: "";
+  display: block;
+  width: 2rpx;
+  height: 24rpx;
+  background: #ccc;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+/* 汽车列表页 */
+.b2b-car-list-box{
+  width: 100%;
+}
+.b2b-car-list-box .car-list .item{
+  background: #fff;
+  display: block;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+}
+.car-list .main-info{
+  width: 100%;
+  height: 225rpx;
+  box-sizing: border-box;
+  padding: 0 0 0 316rpx;
+  position: relative;
+}
+.car-list .main-info .car-pic{
+  width: 300rpx;
+  height: 225rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.car-list .main-info .car-pic image{
+  width: 100%;
+  height: 100%;
+}
+.car-list .main-info .info{
+  width: 100%;
+  height: 100%;
+}
+.car-list .main-info .info .title{
+  height: 100rpx;
+  line-height: 50rpx;
+  font-size: 32rpx;
+}
+
+.car-list .other-info{
+  width: 100%;
+  height: 60rpx;
+}
+
+.b2b-car-list-box .car-list .item:not(:last-child){
+  margin-bottom: 20rpx;
+}

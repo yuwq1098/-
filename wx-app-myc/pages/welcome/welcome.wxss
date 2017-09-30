@@ -1,0 +1,43 @@
+/* pages/welcome/welcome.wxss */
+
+.container {
+  /* height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #e45;
+  position: relative */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.welcome-bg-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-bg-image image {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-container .enter-btn{
+   position: absolute;
+   height: 5.8%;
+   width: 380rpx;
+   background: rgba(0,0,0,0);
+   right: -12rpx;
+   bottom: 22%;
+   left: 0;
+   margin: auto;
+}
+
+.welcome-container .enter-btn text{
+  color: transparent;
+}
+

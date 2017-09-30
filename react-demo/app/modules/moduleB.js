@@ -4,6 +4,10 @@ var speakText = 1 + "89" + 1;
 
 var utils = require('./../utils.js');
 
-module.exports = function() {
+// module.exports = function() {
+//     return utils.addString(speakText)
+// }
+
+define(function() {　　
     return utils.addString(speakText)
-}
+});
