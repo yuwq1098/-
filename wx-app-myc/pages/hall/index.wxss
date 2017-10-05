@@ -87,6 +87,10 @@ page{
   color: #333;
   margin-bottom: 20rpx;
 }
+.info-filter-box.has-res-total{
+   margin-bottom: 0;
+   margin-top: 0;
+}
 .filter-list{
   display: flex;
   padding: 0 4rpx;
@@ -119,6 +123,22 @@ page{
   top: 0;
   bottom: 0;
   margin: auto;
+}
+/* 车辆信息匹配条数 */
+.hall-container .res-total{
+   height:  48rpx;
+   line-height: 48rpx;
+   font-size: 12px;
+   text-align: center;
+   padding: 16rpx 0;
+}
+.res-total .tips {
+  color: #717171;
+}
+.res-total .tips .vital{
+   color: #ff6533;
+   margin: 0 3px;
+   font-size: 14px;
 }
 
 /* 汽车列表页 */

@@ -30,7 +30,7 @@
       </swiper>
     </view>
     <!-- 信息筛选区 -->
-    <view class='info-filter-box'>
+    <view class='info-filter-box has-res-total'>
       <ul class="filter-list">
         <li>
           <text>默认排序</text>
@@ -52,7 +52,7 @@
     </view>
     <!-- 匹配结果条数 -->
     <view class="res-total">
-        <view class="tips">共为您匹配<em class="vital">2663</em>条相关车辆信息</view>
+        <view class="tips">共为您匹配<em class="vital">{{resTotal}}</em>条相关车辆信息</view>
     </view>
     <!-- 车辆信息列表去 -->
     <view class='b2b-car-list-box'>

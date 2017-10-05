@@ -15,8 +15,9 @@ Page({
             interval: 5000, // 定时播放时间间隔
             duration: 1000, // 轮播图片滑动的时间
             circular: true, // 是否衔接处理
-
         },
+        // 匹配信息结果条数
+        resTotal: 0,
     },
 
     /**
@@ -29,7 +30,7 @@ Page({
      * 获取b2b汽车信息列表
      */
     getB2bCarListInfo(){
-        console.log("获取");
+        var that = this;
         var data = {
 
         }
@@ -41,6 +42,7 @@ Page({
           },
           success: function (res) {
             console.log(res.data)
+            that.setData({ "resTotal": res.data.total })
           }
         });
         //B2B车辆大厅列表
