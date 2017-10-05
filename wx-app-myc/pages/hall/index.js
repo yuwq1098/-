@@ -23,7 +23,35 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        this.getB2bCarListInfo();
+    },
+    /**
+     * 获取b2b汽车信息列表
+     */
+    getB2bCarListInfo(){
+        console.log("获取");
+        var data = {
 
+        }
+        wx.request({
+          url: 'https://www.muyouche.com/action2/B2BCarList.ashx', 
+          data: data,
+          header: {
+            'content-type': 'application/x-www-form-urlencoded' // 默认值
+          },
+          success: function (res) {
+            console.log(res.data)
+          }
+        });
+        //B2B车辆大厅列表
+    // getB2BCarList(params){
+    //     return fetchSign('/action2/B2BCarList.ashx', dataToJson(params))
+    // },
+
+    // //B2B车辆大厅列表详情
+    // getCarDetalis(params){
+    //     return fetchSign('/action2/B2BCarDetail.ashx', dataToJson(params))
+    // },
     },
 
     /**

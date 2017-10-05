@@ -5,7 +5,7 @@
     <view class='search-box'>
       <!-- 城市选择 -->
       <view class='city-select'>
-        <text>南昌zzzzzzz</text>
+        <text>南昌</text>
         <image src='/static/icon/i-arrow-down.png'></image>
       </view>
       <!-- 输入框 -->
@@ -50,9 +50,57 @@
         </li>
       </ul>
     </view>
+    <!-- 匹配结果条数 -->
+    <view class="res-total">
+        <view class="tips">共为您匹配<em class="vital">2663</em>条相关车辆信息</view>
+    </view>
     <!-- 车辆信息列表去 -->
     <view class='b2b-car-list-box'>
       <ul class="car-list">
+        <li class="item">
+          <view class='main-info'>
+            <view class="car-pic">
+              <image src='/static/images/b2b-car03.png'></image>
+            </view>
+            <view class="info">
+              <view class='title'>保时捷Panamera 2010款 panamera</view>
+              <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
+              <view class='price'>
+                <span class="normal-price">零售价<em class="data">3.00万</em></span>
+                <!-- <span class="tips">请下载app查看批发价</span> -->
+              </view>
+            </view>
+          </view>
+          <view class='other-info'>
+            <div class="lt">
+              <div class="CDG-label v3">企业车行</div>
+              <div class="CDG-name">悦联商贸有限公司悦联商贸有限公司</div>
+            </div>
+            <div class="rt">10天前上架</div>
+          </view>
+        </li>
+        <li class="item">
+          <view class='main-info'>
+            <view class="car-pic">
+              <image src='/static/images/b2b-car04.png'></image>
+            </view>
+            <view class="info">
+              <view class='title'>保时捷Panamera 2010款 panamera</view>
+              <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
+              <view class='price'>
+                <span class="normal-price">零售价<em class="data">3.00万</em></span>
+                <!-- <span class="tips">请下载app查看批发价</span> -->
+              </view>
+            </view>
+          </view>
+          <view class='other-info'>
+            <div class="lt">
+              <div class="CDG-label v2">个人车行</div>
+              <div class="CDG-name">鼎兴名车广场</div>
+            </div>
+            <div class="rt">10天前上架</div>
+          </view>
+        </li>
         <block wx:for="{{[1,2,3,4]}}" wx:item="item" wx:key="item">
           <li class="item">
             <view class='main-info'>
@@ -63,14 +111,14 @@
                 <view class='title'>保时捷Panamera 2010款 panamera</view>
                 <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
                 <view class='price'>
-                  <span class="normal-price">零售价3.00万</span>
-                  <span class="tips">请下载app查看批发价</span>
+                  <span class="normal-price">零售价<em class="data">3.00万</em></span>
+                  <!-- <span class="tips">请下载app查看批发价</span> -->
                 </view>
               </view>
             </view>
             <view class='other-info'>
               <div class="lt">
-                <div class="CDG-label">合作商</div>
+                <div class="CDG-label v1">合作商</div>
                 <div class="CDG-name">鼎兴名车广场</div>
               </div>
               <div class="rt">10天前上架</div>
