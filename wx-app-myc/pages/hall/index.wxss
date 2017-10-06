@@ -1,3 +1,5 @@
+@import "template/list/list.wxss";
+
 /* pages/hall/index.wxss */
 page{
   background: #f2f2f2;
@@ -22,7 +24,7 @@ page{
 
 }
 .search-box .city-select text{
-     font-size: 28rpx;
+    font-size: 28rpx;
     line-height: 80rpx;
     float: left;
     color: #666;
@@ -39,19 +41,25 @@ page{
     position: relative;
     box-sizing: border-box;
     padding-right: 80rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:  center;  
 }
 .search-box .input-box input{
     width: 100%;
-    height: 48rpx;
+    min-height: 50rpx;
+    height: 50rpx !important;
+    line-height: 50rpx;
     border: none;
-    margin-top: 16rpx;
     background: #f2f2f2;
     -webkit-border-radius: 5rpx;
     border-radius: 5rpx;
-    font-size: 28rpx;
+    font-size: 27rpx;
     color: #333;
     box-sizing: border-box;
     padding: 0 15rpx;
+    vertical-align: middle;
 }
 .hall-container .search-box .search-btn{
     width: 44rpx;
@@ -68,7 +76,7 @@ page{
 /* 轮播区域 */
 .slide-box{
   height: 310rpx;
-  background: #e2e2e2;
+  background: #f2f2f2;
 }
 .slide-box swiper{
   height: 310rpx;
@@ -144,109 +152,4 @@ page{
 /* 汽车列表页 */
 .b2b-car-list-box{
   width: 100%;
-}
-.b2b-car-list-box .car-list .item{
-  background: #fff;
-  display: block;
-  box-sizing: border-box;
-  padding: 16rpx 20rpx;
-}
-.car-list .main-info{
-  width: 100%;
-  height: 225rpx;
-  box-sizing: border-box;
-  padding: 0 0 0 316rpx;
-  position: relative;
-}
-.car-list .main-info .car-pic{
-  width: 300rpx;
-  height: 225rpx;
-  position: absolute;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-}
-.car-list .main-info .car-pic image{
-  width: 100%;
-  height: 100%;
-}
-.car-list .main-info .info{
-  width: 100%;
-  height: 100%;
-}
-.car-list .main-info .info .title{
-  height: 100rpx;
-  line-height: 50rpx;
-  font-size: 15px;
-  margin-bottom: 12rpx;
-  color: #333;
-}
-.car-list .main-info .info .vital-pramas{
-   font-size: 12px;
-   color: #717171;
-}
-.car-list .main-info .info .price{
-   font-size: 13px;
-   line-height: 50rpx;
-   margin-top: 10rpx;
-}
-.car-list .main-info .info .price .normal-price{
-   color: #0479cc;
-   font-size: 12px;
-}
-.car-list .main-info .info .price .normal-price .data{
-   font-size: 16px;
-   margin-left: 10rpx;
-}
-
-.car-list .other-info{
-  width: 100%;
-  height: 48rpx;
-  line-height: 48rpx;
-  font-size: 13px;
-  margin-top: 16rpx;
-}
-.car-list .other-info .lt{
-  float: left;
-}
-.car-list .other-info .lt .CDG-label{
-  background: #29d;
-  border-radius: 12rpx;
-  height: 48rpx;
-  line-height: 48rpx;
-  font-size: 25rpx;
-  display: inline-block;
-  padding: 0 20rpx;
-  color: #fff;
-  vertical-align: top;
-}
-.car-list .other-info .lt .CDG-label.v1{
-  background: #b36bfd;
-}
-.car-list .other-info .lt .CDG-label.v2{
-  background: #269bcc;
-}
-.car-list .other-info .lt .CDG-label.v3{
-  background: #26ccab;
-}
-.car-list .other-info .lt .CDG-name{
-  display: inline-block;
-  height: 48rpx;
-  line-height: 48rpx;
-  font-size: 13px;
-  margin-left: 15rpx;
-  color: #333;
-  max-width: 360rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.car-list .other-info .rt{
-  float: right;
-  color: #717171;
-  font-size: 12px;
-}
-
-.b2b-car-list-box .car-list .item:not(:last-child){
-  margin-bottom: 20rpx;
 }

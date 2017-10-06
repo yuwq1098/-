@@ -1,0 +1,121 @@
+/* pages/hall/template/item/item.wxss */
+
+.item-container .main-info{
+  width: 100%;
+  height: 225rpx;
+  box-sizing: border-box;
+  padding: 0 0 0 316rpx;
+  position: relative;
+}
+.item-container .main-info .car-pic{
+  width: 300rpx;
+  height: 225rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.item-container .main-info .car-pic .carImage{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.item-container .main-info .car-pic image.placeholder{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.item-container .main-info .info{
+  width: 100%;
+  height: 100%;
+}
+.item-container .main-info .info .title{
+  height: 100rpx;
+  line-height: 50rpx;
+  font-size: 15px;
+  margin-bottom: 12rpx;
+  color: #333;
+  display: -webkit-box!important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.item-container .main-info .info .vital-pramas{
+   font-size: 25rpx;
+   color: #717171;
+}
+.item-container .main-info .info .price{
+   font-size: 28rpx;
+   line-height: 50rpx;
+   margin-top: 10rpx;
+}
+.item-container .main-info .info .price .normal-price{
+   /* color: #0479cc; */
+   font-size: 25rpx;
+   color: #717171;
+}
+.item-container .main-info .info .price .normal-price .data{
+   font-size: 34rpx;
+   margin-left: 10rpx;
+   color: #ff6533;
+}
+
+.item-container .other-info{
+  width: 100%;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 28rpx;
+  margin-top: 16rpx;
+}
+.item-container .other-info .lt{
+  float: left;
+}
+.item-container .other-info .lt .CDG-label{
+  background: #29d;
+  border-radius: 12rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 25rpx;
+  display: inline-block;
+  padding: 0 20rpx;
+  color: #fff;
+  vertical-align: top;
+}
+.item-container .other-info .lt .CDG-label.v1{
+  background: #b36bfd;
+}
+.item-container .other-info .lt .CDG-label.v2{
+  background: #269bcc;
+}
+.item-container .other-info .lt .CDG-label.v3{
+  background: #26ccab;
+}
+.item-container .other-info .lt .CDG-name{
+  display: inline-block;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 28rpx;
+  margin-left: 15rpx;
+  color: #333;
+  max-width: 360rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item-container .other-info .rt{
+  float: right;
+  color: #717171;
+  font-size: 24rpx;
+}
+
+.item-container .item:not(:last-child){
+  margin-bottom: 20rpx;
+}

@@ -1,0 +1,118 @@
+<!-- 车辆详情页 -->
+<view class="datails-container">
+  <!-- 车辆详情轮播图信息 -->
+  <view class="details-slide">
+    <swiper id="index-swiper" bindchange='dotsChange' current="{{slideData.current}}" vertical="{{slideData.vertical}}" indicator-dots="{{slideData.indicatorDots}}" indicator-color="{{slideData.indicatorColor}}" indicator-active-color="{{slideData.indicatorActiveColor}}"
+      autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}" duration="{{slideData.duration}}" circular="{{slideData.loop}}">
+      <block wx:for="{{carImgData.imgItems}}" wx:item="item" wx:key="item">
+        <swiper-item class="slide-item">
+          <!-- <image src="{{item.fileUrl}}" data-slideId="{{item}}"></image> -->
+          <view class="slide-imageFile" style="background: url('{{item.fileUrl}}') center center no-repeat; background-size: 100% auto;"></view>
+          <view class='other'>
+            <view class='view-total'>浏览量: {{otherInfo.browseCount||0}}</view>
+            <view class="curr-page">{{currSlideIndex}}/{{slidePageSize}}</view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 详情页主要信息 -->
+  <view class="main-box">
+    <!-- 前置主要信息 -->
+    <view class='top-info'>
+      <view class="car-title">{{basicInfo.title}}</view>
+      <view class='price-box'>
+        <!-- 普通价格 -->
+        <view class="normal-price">零售价
+          <em class="vital">3.38万元</em>
+        </view>
+        <view class="tips">下载app可查看批发价</view>
+      </view>
+    </view>
+    <!-- 基本信息 -->
+    <view class='basic-info'>
+      <view class="info-head">
+        <i class="adorn"></i>基本信息</view>
+      <view class="info-content">
+        <!-- 更新时间 -->
+        <view class="update-time">更新时间： {{basicInfo.shelveTime}}</view>
+        <!-- 基本信息表 -->
+        <view class="car-basic-tb">
+          <ul class="info-list f__clearfix">
+            <li class="info-item">
+              <view class="u-data">2012-12-04</view>
+              <view class="u-attr">上牌日期</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">台州市</view>
+              <view class="u-attr">车辆所在地</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">国4</view>
+              <view class="u-attr">排放标准</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">0次</view>
+              <view class="u-attr">过户次数</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">4.50万公里</view>
+              <view class="u-attr">表显里程</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">无</view>
+              <view class="u-attr">有否交强险</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">2.7 L/100km</view>
+              <view class="u-attr">综合油耗</view>
+            </li>
+            <li class="info-item">
+              <view class="u-data">非营运</view>
+              <view class="u-attr">营运类型</view>
+            </li>
+          </ul>
+        </view>
+      </view>
+    </view>
+    <!-- 车况补充 -->
+    <view class='more-info'>
+      <view class="info-head">
+        <i class="adorn"></i>车况补充</view>
+      <view class="info-box">
+        <ul class="more-list f__clearfix">
+          <li class="more-item">
+            <view class="u-attr">钣金情况：</view>
+            <view class="u-data">全车原钣</view>
+          </li>
+          <li class="more-item">
+            <view class="u-attr">事故情况：</view>
+            <view class="u-data">无事故无火烧无水浸</view>
+          </li>
+          <li class="more-item">
+            <view class="u-attr">漆面情况：</view>
+            <view class="u-data">全车原漆</view>
+          </li>
+          <li class="more-item">
+            <view class="u-attr">内饰情况：</view>
+            <view class="u-data">接近全新</view>
+          </li>
+        </ul>
+      </view>
+    </view>
+    <!-- 车商信息 -->
+    <view class="CDG-info" wx:if="otherInfo">
+        <view class="CDG-avatar">
+            
+             <image class="u-pic" src="{{otherInfo.faceImgUrl}}" ></image> 
+        </view>
+        <view class="content-info">
+            <view class="c-name">{{otherInfo.cdgName}}</view>
+        </view>
+    </view>
+  </view>
+
+
+
+</view>

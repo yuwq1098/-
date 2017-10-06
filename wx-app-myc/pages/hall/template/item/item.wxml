@@ -1,0 +1,33 @@
+<!--pages/hall/template/item/item.wxml-->
+<!-- 车辆信息子区 -->
+<template name="carItem">
+  <view class="item-container" catchtap="enterCarDetails" data-carid='{{id}}'>
+    <view class='main-info'>
+      <view class="car-pic">
+        <image src='/static/images/img-placeholder.png' class="placeholder"></image>
+        <!-- <image src='{{imgUrl}}' class="carImage"></image> -->
+        <view class="carImage" style="background: url('{{imgUrl}}') center center no-repeat; background-size: 100% auto;"></view>
+      </view>
+      <view class="info">
+        <view class='title'>{{name}}</view>
+        <view class='vital-pramas'>{{inCity}}/{{plateDate}}/{{mileage}}</view>
+        <view class='price'>
+          <span class="normal-price">零售价
+            <em class="data">{{retailPrice}}</em>
+          </span>
+          <!-- <span class="tips">请下载app查看批发价</span> -->
+        </view>
+      </view>
+    </view>
+    <view class='other-info'>
+      <view class="lt">
+        <view>{{}}</view>
+        <view class="CDG-label v1" wx:if="{{theCDGType == '合作商'}}"> {{theCDGType}} </view>
+        <view class="CDG-label v2" wx:elif="{{theCDGType == '个人车行'}}"> {{theCDGType}} </view>
+        <view class="CDG-label v3" wx:else> {{theCDGType}} </view>
+        <view class="CDG-name">{{cName}}</view>
+      </view>
+      <view class="rt">{{shelveTime}}上架</view>
+    </view>
+  </view>
+</template>

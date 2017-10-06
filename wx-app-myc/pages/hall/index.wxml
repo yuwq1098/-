@@ -1,3 +1,6 @@
+<!-- 引入车辆信息列表区 模板 -->
+<import src="template/list/list.wxml" />
+
 <!--pages/hall/index.wxml-->
 <view class="hall-container">
   <scroll-view>
@@ -19,14 +22,13 @@
     </view>
     <!-- 轮播区 -->
     <view class="slide-box">
-      <swiper vertical="{{slideData.vertical}}" indicator-dots="{{slideData.indicatorDots}}" indicator-color="{{slideData.indicatorColor}}" indicator-active-color="{{slideData.indicatorActiveColor}}" autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}"
+      <swiper id="index-swiper" bindchange='dotsChange' current="{{slideData.current}}" vertical="{{slideData.vertical}}" indicator-dots="{{slideData.indicatorDots}}" indicator-color="{{slideData.indicatorColor}}" indicator-active-color="{{slideData.indicatorActiveColor}}" autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}"
         duration="{{slideData.duration}}" circular="{{slideData.loop}}">
         <block wx:for="{{[1,2,3,4,5]}}" wx:item="item" wx:key="item">
           <swiper-item>
             <image src="/static/images/slide-img0{{item}}.png" data-slideId="{{item}}"></image>
           </swiper-item>
         </block>
-
       </swiper>
     </view>
     <!-- 信息筛选区 -->
@@ -52,80 +54,12 @@
     </view>
     <!-- 匹配结果条数 -->
     <view class="res-total">
-        <view class="tips">共为您匹配<em class="vital">{{resTotal}}</em>条相关车辆信息</view>
+        <view class="tips" wx:if="{{resTotal>0}}">共为您匹配<em class="vital">{{resTotal}}</em>条相关车辆信息</view>
+        <view class="tips" wx:else>未匹配到相关车辆信息</view>
     </view>
     <!-- 车辆信息列表去 -->
     <view class='b2b-car-list-box'>
-      <ul class="car-list">
-        <li class="item">
-          <view class='main-info'>
-            <view class="car-pic">
-              <image src='/static/images/b2b-car03.png'></image>
-            </view>
-            <view class="info">
-              <view class='title'>保时捷Panamera 2010款 panamera</view>
-              <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
-              <view class='price'>
-                <span class="normal-price">零售价<em class="data">3.00万</em></span>
-                <!-- <span class="tips">请下载app查看批发价</span> -->
-              </view>
-            </view>
-          </view>
-          <view class='other-info'>
-            <div class="lt">
-              <div class="CDG-label v3">企业车行</div>
-              <div class="CDG-name">悦联商贸有限公司悦联商贸有限公司</div>
-            </div>
-            <div class="rt">10天前上架</div>
-          </view>
-        </li>
-        <li class="item">
-          <view class='main-info'>
-            <view class="car-pic">
-              <image src='/static/images/b2b-car04.png'></image>
-            </view>
-            <view class="info">
-              <view class='title'>保时捷Panamera 2010款 panamera</view>
-              <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
-              <view class='price'>
-                <span class="normal-price">零售价<em class="data">3.00万</em></span>
-                <!-- <span class="tips">请下载app查看批发价</span> -->
-              </view>
-            </view>
-          </view>
-          <view class='other-info'>
-            <div class="lt">
-              <div class="CDG-label v2">个人车行</div>
-              <div class="CDG-name">鼎兴名车广场</div>
-            </div>
-            <div class="rt">10天前上架</div>
-          </view>
-        </li>
-        <block wx:for="{{[1,2,3,4]}}" wx:item="item" wx:key="item">
-          <li class="item">
-            <view class='main-info'>
-              <view class="car-pic">
-                <image src='/static/images/b2b-car0{{item}}.png'></image>
-              </view>
-              <view class="info">
-                <view class='title'>保时捷Panamera 2010款 panamera</view>
-                <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
-                <view class='price'>
-                  <span class="normal-price">零售价<em class="data">3.00万</em></span>
-                  <!-- <span class="tips">请下载app查看批发价</span> -->
-                </view>
-              </view>
-            </view>
-            <view class='other-info'>
-              <div class="lt">
-                <div class="CDG-label v1">合作商</div>
-                <div class="CDG-name">鼎兴名车广场</div>
-              </div>
-              <div class="rt">10天前上架</div>
-            </view>
-          </li>
-        </block>
-      </ul>
+        <template is="carList" data="{{b2bCarList}}"/>
     </view>
   </scroll-view>
 </view>

@@ -1,0 +1,61 @@
+<!-- 引入车辆信息子区 模板 -->
+<import src="../item/item.wxml" />
+
+<!-- 车辆信息列表区 -->
+<template name="carList">
+  <view>
+    <ul class="template-car-list">
+      <!-- <li class="item">
+        <view class='main-info'>
+          <view class="car-pic">
+            <image src='/static/images/b2b-car03.png'></image>
+          </view>
+          <view class="info">
+            <view class='title'>保时捷Panamera 2010款 panamera保时捷Panamera 2010款 panamera</view>
+            <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
+            <view class='price'>
+              <span class="normal-price">零售价
+                <em class="data">3.00万</em>
+              </span>
+            </view>
+          </view>
+        </view>
+        <view class='other-info'>
+          <div class="lt">
+            <div class="CDG-label v3">企业车行</div>
+            <div class="CDG-name">悦联商贸有限公司悦联商贸有限公司</div>
+          </div>
+          <div class="rt">10天前上架</div>
+        </view>
+      </li>
+      <li class="item">
+        <view class='main-info'>
+          <view class="car-pic">
+            <image src='/static/images/b2b-car04.png'></image>
+          </view>
+          <view class="info">
+            <view class='title'>保时捷Panamera 2010款 panamera</view>
+            <view class='vital-pramas'>南昌/2016年/1.4万公里</view>
+            <view class='price'>
+              <span class="normal-price">零售价
+                <em class="data">3.00万</em>
+              </span>
+            </view>
+          </view>
+        </view>
+        <view class='other-info'>
+          <div class="lt">
+            <div class="CDG-label v2">个人车行</div>
+            <div class="CDG-name">鼎兴名车广场</div>
+          </div>
+          <div class="rt">10天前上架</div>
+        </view>
+      </li> -->
+      <block wx:for="{{b2bCarList}}" wx:item="item" wx:key="item">
+        <li class="item">
+          <template is="carItem" data="{{...item}}"/>
+        </li>
+      </block>
+    </ul>
+  </view>
+</template>

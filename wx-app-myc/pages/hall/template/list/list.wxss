@@ -1,0 +1,11 @@
+/* pages/hall/template/list/list.wxss */
+
+@import "../item/item.wxss";
+
+/* 汽车列表页 */
+.template-car-list .item{
+  background: #fff;
+  display: block;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+}

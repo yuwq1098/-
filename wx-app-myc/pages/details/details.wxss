@@ -1,0 +1,271 @@
+page {
+  background: #f2f2f2;
+}
+
+/* 轮播区域 */
+
+.details-slide {
+  height: 550rpx;
+  background: #f2f2f2;
+  position: relative;
+}
+
+.details-slide swiper {
+  height: 550rpx;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.details-slide swiper .slide-imageFile {
+  width: 100%;
+  height: 100%;
+}
+
+.details-slide .slide-item .other {
+  width: 100%;
+  box-sizing: border-box;
+  height: 48rpx;
+  padding: 0 30rpx;
+  position: absolute;
+  bottom: 20rpx;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.details-slide .other .view-total, .details-slide .other .curr-page {
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #e2e2e2;
+  font-size: 26rpx;
+  letter-spacing: 1rpx;
+  text-indent: 1rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  padding: 0 16rpx;
+  border-radius: 12rpx;
+}
+
+/* 详情页主要信息 */
+
+.main-box {
+  width: 100%;
+}
+
+/* 前置主要信息 */
+
+.main-box .top-info {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx;
+}
+
+.main-box .top-info .car-title {
+  max-height: 92rpx;
+  line-height: 46rpx;
+  font-size: 34rpx;
+  color: #333;
+  letter-spacing: 1rpx;
+  text-indent: 1rpx;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.main-box .top-info .price-box {
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 26rpx;
+  margin: 16rpx 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: #717171;
+}
+
+.main-box .top-info .price-box .vital {
+  margin-left: 8rpx;
+  color: #ff6533;
+  font-size: 32rpx;
+  text-decoration: line-through;
+}
+
+.main-box .top-info .price-box .tips {
+  margin-left: 32rpx;
+}
+
+/* 基本信息 */
+
+.main-box .basic-info {
+  min-height: 280rpx;
+}
+
+.main-box .basic-info .info-head {
+  height: 60rpx;
+  line-height: 60rpx;
+  position: relative;
+  font-size: 26rpx;
+  padding-left: 44rpx;
+  color: #717171;
+}
+
+.main-box .basic-info .info-head .adorn {
+  display: block;
+  width: 9rpx;
+  height: 9rpx;
+  background: #31a3f5;
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.main-box .basic-info .info-content {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx 0;
+}
+
+.main-box .basic-info .info-content .update-time {
+  height: 44rpx;
+  line-height: 44rpx;
+  color: #717171;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+/* 基本信息表 */
+
+.main-box .basic-info .car-basic-tb {
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+.main-box .car-basic-tb .info-list {
+  width: 735rpx;
+  margin-left: -15rpx;
+}
+
+.main-box .car-basic-tb .info-list .info-item {
+  width: 230rpx;
+  height: 92rpx;
+  float: left;
+  margin-left: 15rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+}
+
+.main-box .car-basic-tb .info-list .info-item .u-data {
+  height: 54rpx;
+  line-height: 54rpx;
+  color: #333;
+  font-size: 32rpx;
+}
+
+.main-box .car-basic-tb .info-list .info-item .u-attr {
+  height: 38rpx;
+  line-height: 38rpx;
+}
+
+/* 车况补充 */
+
+.main-box .more-info {
+  width: 100%;
+}
+
+.main-box .more-info .info-head {
+  height: 60rpx;
+  line-height: 60rpx;
+  position: relative;
+  font-size: 26rpx;
+  padding-left: 44rpx;
+  color: #717171;
+}
+
+.main-box .more-info .info-head .adorn {
+  display: block;
+  width: 9rpx;
+  height: 9rpx;
+  background: #31a3f5;
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.main-box .more-info .info-box {
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 16rpx 20rpx 6rpx;
+}
+
+.main-box .more-info .info-box .more-list {
+  display: block;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.main-box .more-info .info-box .more-item {
+  width: 300rpx;
+  height: 94rpx;
+  float: left;
+  margin-bottom: 10rpx;
+}
+
+.main-box .more-info .info-box .more-item .u-attr,
+.main-box .more-info .info-box .more-item .u-data {
+  height: 44rpx;
+  line-height: 44rpx;
+}
+
+.main-box .more-info .info-box .more-item .u-attr {
+  color: #959595;
+}
+
+.main-box .more-info .info-box .more-item .u-data {
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #333;
+  font-size: 32rpx;
+}
+
+/* 车商信息 */
+
+.main-box .CDG-info {
+  height: 180rpx;
+  box-sizing: border-box;
+  margin-top: 16rpx;
+  background-color: #fff;
+  position: relative;
+  padding: 20rpx 20rpx 0 160rpx;
+}
+
+.main-box .CDG-info .CDG-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: border-box;
+  border: 1px solid #e2e2e2;
+  border-radius: 50%;
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background-color: #f7f7f7;
+}
+
+.main-box .CDG-info .CDG-avatar .u-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
