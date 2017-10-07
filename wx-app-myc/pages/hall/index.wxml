@@ -3,7 +3,7 @@
 
 <!--pages/hall/index.wxml-->
 <view class="hall-container">
-  <scroll-view>
+  <scroll-view class='scroll-view' scroll-top="{{scrollTop}}" scroll-y="true" scroll-x="false" lower-threshold="80" upper-threshold="0" bindscrolltolower="pullToLode" bindscroll="scroll" bindscrolltoupper="refresh" style="height:{{scrollHeight}}px;">
     <!-- 搜索区 -->
     <view class='search-box'>
       <!-- 城市选择 -->
@@ -22,8 +22,8 @@
     </view>
     <!-- 轮播区 -->
     <view class="slide-box">
-      <swiper id="index-swiper" bindchange='dotsChange' current="{{slideData.current}}" vertical="{{slideData.vertical}}" indicator-dots="{{slideData.indicatorDots}}" indicator-color="{{slideData.indicatorColor}}" indicator-active-color="{{slideData.indicatorActiveColor}}" autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}"
-        duration="{{slideData.duration}}" circular="{{slideData.loop}}">
+      <swiper id="index-swiper" bindchange='dotsChange' current="{{slideData.current}}" vertical="{{slideData.vertical}}" indicator-dots="{{slideData.indicatorDots}}" indicator-color="{{slideData.indicatorColor}}" indicator-active-color="{{slideData.indicatorActiveColor}}"
+        autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}" duration="{{slideData.duration}}" circular="{{slideData.loop}}">
         <block wx:for="{{[1,2,3,4,5]}}" wx:item="item" wx:key="item">
           <swiper-item>
             <image src="/static/images/slide-img0{{item}}.png" data-slideId="{{item}}"></image>
@@ -54,12 +54,28 @@
     </view>
     <!-- 匹配结果条数 -->
     <view class="res-total">
-        <view class="tips" wx:if="{{resTotal>0}}">共为您匹配<em class="vital">{{resTotal}}</em>条相关车辆信息</view>
-        <view class="tips" wx:else>未匹配到相关车辆信息</view>
+      <view class="tips" wx:if="{{resTotal>0}}">共为您匹配
+        <em class="vital">{{resTotal}}</em>条相关车辆信息</view>
+      <view class="tips" wx:else>未匹配到相关车辆信息</view>
+      <view class='newAdds'>
+        <span>新增 {{todayNewsCount}} 辆</span>
+      </view>
     </view>
     <!-- 车辆信息列表去 -->
     <view class='b2b-car-list-box'>
-        <template is="carList" data="{{b2bCarList}}"/>
+      <template is="carList" data="{{b2bCarList}}" />
+    </view>
+    <block wx:if="{{isLoadingMore}}">
+      <view class="loading-more">
+        <view class='img-loading'>
+          <image src='/static/images/i-loading.png' class="loading-pic"></image>
+        </view>
+        <text class="tips">正在加载更多...</text>
+      </view>
+    </block>
+    <!-- 返回顶部 -->
+    <view class="backToTop {{btt_active}}" catchtap='backToTop' style='display:flex;'>
+      <image src='/static/images/i-backToTop.png'></image>
     </view>
   </scroll-view>
 </view>

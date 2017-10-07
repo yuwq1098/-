@@ -1,5 +1,6 @@
 {
   "navigationBarBackgroundColor": "#072f6a",
   "navigationBarTitleText": "木有车B2B大厅",
-  "navigationBarTextStyle": "write"
+  "navigationBarTextStyle": "write",
+  "backgroundTextStyle": "dark"
 }

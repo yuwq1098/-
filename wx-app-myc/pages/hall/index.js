@@ -1,4 +1,6 @@
 const carInfo = require('../../utils/class/carInfo.js')
+const util = require('../../utils/util.js')
+const system = require('../../utils/system.js')
 
 // pages/hall/index.js
 Page({
@@ -21,9 +23,32 @@ Page({
     },
     // 匹配信息结果条数
     resTotal: 0,
+    // 今日新增
+    todayNewsCount: 0,
     // b2b大厅搜索结果 车辆列表
     b2bCarList: [],
 
+    // 当前加载的页数
+    currPageIndex: 1,
+    // 是否正在加载更多
+    isLoadingMore: false,
+    // 是否正在刷新
+    isRefreshing: false,
+    // 列表单页加载大小
+    listPageSize: system.hall_list_page_size,
+
+    // 时间戳，翻页防止数据变动冲突
+    TS: "",
+    
+
+    // 是否显示返回顶部
+    isShowBackToTop: false,
+    btt_active: '',
+
+    // 窗口高度
+    scrollHeight: 0,
+    // 滚动条高度
+    scrollTop: 0,
 
   },
 
@@ -31,7 +56,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getB2bCarListInfo();
+    var that = this;
+    this.getB2bCarListInfo(this.getHallCarListSuccess);
+    wx.getSystemInfo({
+      success: function (res) {
+        console.info("窗口高度（不包含头部）", res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight
+        });
+      }
+    });
   },
 
   /**
@@ -45,12 +79,10 @@ Page({
     return arr;
   },
 
-
-
   /**
    * 获取b2b汽车信息列表
    */
-  getB2bCarListInfo() {
+  getB2bCarListInfo(callBack) {
     var that = this;
     var data = {
       // B2BPriceFrom: "",
@@ -67,36 +99,65 @@ Page({
       // MileageTo: "",
       // OnLicensePlateDateFrom: "",
       // OnLicensePlateDateTo: "",
-      PageIndex: 1,
-      PageSize:25,
-      LikeKey: '宝',
+      PageIndex: this.data.currPageIndex,
+      PageSize: this.data.listPageSize,
+      LikeKey: "宝马",
+      TS: this.data.TS,
       // ServiceCharacteristics: "",
       // SortType: "",
       // TransferTimesFrom: "",
       // TransferTimesTo: "",
     }
-    wx.request({
-      url: 'https://www.muyouche.com/action2/B2BCarList.ashx',
-      data: data,
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        var b2bCarList = that.normalizeB2bCarInfo(res.data.data);
-
-        that.setData({ 'b2bCarList': b2bCarList })
-        that.setData({ "resTotal": res.data.total })
-      }
-    });
-
-    // //B2B车辆大厅列表详情
-    // getCarDetalis(params){
-    //     return fetchSign('/action2/B2BCarDetail.ashx', dataToJson(params))
-    // },
+    var url = "https://www.muyouche.com/action2/B2BCarList.ashx";
+    // 使用工具方法中封装好的POST方法
+    util.POST(url, data, callBack);
   },
-  // 当页面索引到了最后一个时
+
+  /**
+   * 成功获取数据的回调函数
+   */
+  getHallCarListSuccess(res) {
+    console.log(res)
+    var b2bCarList = this.normalizeB2bCarInfo(res.data);
+    this.setData({
+      "b2bCarList": b2bCarList,
+      "resTotal": res.total,
+      "todayNewsCount": res.TodayCnt,
+      'TS': res.TS,
+    })
+    // 如果正在刷新，那么停止刷新特效
+    if (this.data.isRefreshing) {
+      this.setData({
+        'isRefreshing': false,
+      })
+      wx.stopPullDownRefresh();
+    }
+  },
+
+  /**
+   * 上拉加载新增数据的回调
+   */
+  getMoreDataSuccess(res) {
+    console.log(res)
+    var addsCarList = this.normalizeB2bCarInfo(res.data);
+    var agoCarList = this.data.b2bCarList;
+    var b2bCarList = agoCarList.concat(addsCarList);
+    this.setData({
+      "b2bCarList": b2bCarList,
+      "resTotal": res.total,
+      "todayNewsCount": res.TodayCnt,
+    })
+    // 关闭加载状态
+    if (this.data.isLoadingMore) {
+      this.setData({
+        'isLoadingMore': false,
+      })
+    }
+  },
+
+  /**
+   * 当页面索引到了最后一个时
+   */
   dotsChange: function (e) {
     var currSlideIndex = e.detail.current;
     var that = this;
@@ -113,12 +174,79 @@ Page({
   /**
    * 进入车辆详情页, catchtap 禁止事件向上冒泡，bindtap则不禁止事件向上冒泡
    */
-  enterCarDetails(e){
-     var carId = e.currentTarget.dataset.carid; 
-     // 使用js动态导航跳转
-     wx.navigateTo({
-       url: "/pages/details/details?id=" + carId
-     })
+  enterCarDetails(e) {
+    var carId = e.currentTarget.dataset.carid;
+    // 使用js动态导航跳转
+    wx.navigateTo({
+      url: "/pages/details/details?id=" + carId
+    })
+  },
+
+  /**
+   * 上拉加载更多
+   */
+  pullToLode() {
+    // 如果正在加载，那么就return
+    if (this.data.isLoadingMore) return;
+    // 如果没有多余的数据可加载，那么也return
+    if (this.data.resTotal <= this.data.listPageSize * this.data.currPageIndex) {
+      console.log("无数据可加载，我是底线~~")
+      return;
+    };
+
+    this.setData({
+      'isLoadingMore': true,
+    })
+    var nextPageIndex = ++this.data.currPageIndex;
+    // 请求数据
+    this.getB2bCarListInfo(this.getMoreDataSuccess);
+  },
+
+  /**
+   * 下拉刷新
+   */
+  refresh: function (e) {
+    // 如果正在刷新，那么return
+    if (this.data.isRefreshing) return;
+
+    this.setData({
+      'isRefreshing': true,
+      'currPageIndex': 1,
+    })
+    wx.startPullDownRefresh();
+    this.getB2bCarListInfo(this.getHallCarListSuccess);
+  },
+
+  /**
+   * 监听scroll-view的滚动 事件
+   */
+  scroll: function (event) {
+    // 是否大于1.5的屏
+    if (event.detail.scrollTop > Math.ceil(this.data.scrollHeight * 1.5)) {
+      this.setData({
+        "isShowBackToTop": true,
+        'btt_active': 'active',
+      });
+    }else{
+      this.setData({
+        'btt_active': '',
+      });
+      setTimeout(()=>{
+        this.setData({
+          "isShowBackToTop": false,
+        });
+      },300);
+      
+    }
+  },
+  /**
+   * 返回顶部
+   */
+  backToTop(){
+    // 防止触发刷新，所以比0大了1
+    this.setData({
+      "scrollTop": 1,
+    });
   },
 
   /**
@@ -146,13 +274,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
   },
 

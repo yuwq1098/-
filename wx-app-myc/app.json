@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/details/details",
     "pages/hall/index",
     "pages/welcome/welcome",
+    "pages/details/details",
     "pages/index/index",
     "pages/logs/logs"
   ],
@@ -10,6 +10,7 @@
     "navigationBarBackgroundColor": "#222",
     "navigationBarTitleText": "木有车B2B",
     "navigationBarTextStyle": "#fff",
-    "backgroundTextStyle": "light"
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true
   }
 }

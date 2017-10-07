@@ -9,3 +9,6 @@
   box-sizing: border-box;
   padding: 16rpx 20rpx;
 }
+.template-car-list .item:not(:last-child){
+  border-bottom: 1rpx solid #f2f2f2;
+}

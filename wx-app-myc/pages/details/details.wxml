@@ -1,3 +1,6 @@
+<!-- 引入在售车辆信息子区 模板 -->
+<import src="./item/item.wxml" />
+
 <!-- 车辆详情页 -->
 <view class="datails-container">
   <!-- 车辆详情轮播图信息 -->
@@ -25,7 +28,7 @@
       <view class='price-box'>
         <!-- 普通价格 -->
         <view class="normal-price">零售价
-          <em class="vital">3.38万元</em>
+          <em class="vital">{{basicInfo.retailPrice}}元</em>
         </view>
         <view class="tips">下载app可查看批发价</view>
       </view>
@@ -41,35 +44,35 @@
         <view class="car-basic-tb">
           <ul class="info-list f__clearfix">
             <li class="info-item">
-              <view class="u-data">2012-12-04</view>
+              <view class="u-data">{{basicInfo.plateDate||'暂无数据'}}</view>
               <view class="u-attr">上牌日期</view>
             </li>
             <li class="info-item">
-              <view class="u-data">台州市</view>
+              <view class="u-data">{{basicInfo.inCity||'暂无数据'}}</view>
               <view class="u-attr">车辆所在地</view>
             </li>
             <li class="info-item">
-              <view class="u-data">国4</view>
+              <view class="u-data">{{basicInfo.dischargeStandard||'暂无数据'}}</view>
               <view class="u-attr">排放标准</view>
             </li>
             <li class="info-item">
-              <view class="u-data">0次</view>
+              <view class="u-data">{{basicInfo.transferTimes}}次</view>
               <view class="u-attr">过户次数</view>
             </li>
             <li class="info-item">
-              <view class="u-data">4.50万公里</view>
+              <view class="u-data">{{basicInfo.mileage||'暂无数据'}}</view>
               <view class="u-attr">表显里程</view>
             </li>
             <li class="info-item">
-              <view class="u-data">无</view>
+              <view class="u-data">{{basicInfo.compulsoryDataIsOut}}</view>
               <view class="u-attr">有否交强险</view>
             </li>
             <li class="info-item">
-              <view class="u-data">2.7 L/100km</view>
+              <view class="u-data">{{basicInfo.liter||'暂无数据'}}</view>
               <view class="u-attr">综合油耗</view>
             </li>
             <li class="info-item">
-              <view class="u-data">非营运</view>
+              <view class="u-data">{{basicInfo.serviceType||'暂无数据'}}</view>
               <view class="u-attr">营运类型</view>
             </li>
           </ul>
@@ -77,42 +80,66 @@
       </view>
     </view>
     <!-- 车况补充 -->
+    <block wx:if="{{carDetails&&carDetails.length>0}}">
     <view class='more-info'>
       <view class="info-head">
         <i class="adorn"></i>车况补充</view>
       <view class="info-box">
         <ul class="more-list f__clearfix">
-          <li class="more-item">
-            <view class="u-attr">钣金情况：</view>
-            <view class="u-data">全车原钣</view>
-          </li>
-          <li class="more-item">
-            <view class="u-attr">事故情况：</view>
-            <view class="u-data">无事故无火烧无水浸</view>
-          </li>
-          <li class="more-item">
-            <view class="u-attr">漆面情况：</view>
-            <view class="u-data">全车原漆</view>
-          </li>
-          <li class="more-item">
-            <view class="u-attr">内饰情况：</view>
-            <view class="u-data">接近全新</view>
-          </li>
+          <block wx:for="{{carDetails}}" wx:item="item" wx:key="item">
+            <li class="more-item">
+              <view class="u-attr">{{item.label}}：</view>
+              <view class="u-data">{{item.desc}}</view>
+            </li>
+          </block>
         </ul>
       </view>
     </view>
+    </block>
     <!-- 车商信息 -->
-    <view class="CDG-info" wx:if="otherInfo">
-        <view class="CDG-avatar">
-            
-             <image class="u-pic" src="{{otherInfo.faceImgUrl}}" ></image> 
+    <view class="CDG-info">
+      <view class="CDG-avatar">
+        <!-- 防止image标签被load的时候，src地址上没有值，而导致报错 -->
+        <block wx:if="{{otherInfo.faceImgUrl}}">
+          <image class="u-pic" src="{{otherInfo.faceImgUrl}}"></image>
+        </block>
+      </view>
+      <view class="content-info">
+        <!-- 车行名称 -->
+        <view class="c-name">{{otherInfo.cdgName}}{{otherInfo.cdgName}}{{otherInfo.cdgName}}{{otherInfo.cdgName}}</view>
+        <!-- 身份标识 -->
+        <view class="auth-type v1" wx:if="{{otherInfo.theAuthType=='个人车商'}}">{{otherInfo.theAuthType}}</view>
+        <view class="auth-type v2" wx:else>{{otherInfo.theAuthType}}</view>
+        <!-- 联系方式 -->
+        <view class="contact">
+          <view class="contact-name">{{otherInfo.contacter}}</view>
+          <view class="contact-tel">{{otherInfo.tel}}</view>
         </view>
-        <view class="content-info">
-            <view class="c-name">{{otherInfo.cdgName}}</view>
-        </view>
+        <!-- 地址 -->
+        <view class="address">{{otherInfo.address}}</view>
+      </view>
     </view>
+    <!-- 在售车辆信息 -->
+    <view class="onSale-info">
+      <view class="info-head">在售车辆（{{onSaleCarCount}}辆）</view>
+      <!-- 在售车辆列表 -->
+      <view class="list-box">
+        <ul class="onsale-list">
+          <block wx:for="{{theOnSaleCarList}}" wx:item="item" wx:key="item">
+            <li class="item">
+              <template is="onSaleItem" data="{{...item}}" />
+            </li>
+          </block>
+        </ul>
+        <!-- 查看更多 -->
+        <block wx:if="{{onSaleCarCount>5 && !isShowAllView}}">
+           <view class="btn-box">
+              <view class="all-view-btn" catchtap='lookAllInfo'>查看全部</view>
+           </view>
+        </block>
+      </view>
+    </view>
+
   </view>
-
-
 
 </view>

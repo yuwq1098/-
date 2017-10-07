@@ -1,0 +1,69 @@
+/* pages/details/item/item.wxss */
+.item-container{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16rpx 16rpx 16rpx 280rpx;
+  position: relative;
+  background: #fafafa;
+  border: 1rpx solid #f2f2f2;
+  border-radius: 8rpx;
+}
+.item-container .car-pic{
+  width: 250rpx;
+  height: 188rpx;
+  position: absolute;
+  left: 16rpx;
+  top: 16rpx;
+  overflow: hidden;
+}
+.item-container .car-pic .carImage{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.item-container .car-pic image.placeholder{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.item-container .info-content{
+  width: 100%;
+  height: 188rpx;
+}
+.item-container .info-content .title{
+  height: 92rpx;
+  line-height: 46rpx;
+  font-size: 28rpx;
+  color: #333;
+  display: -webkit-box!important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.item-container .info-content .vital-pramas{
+   font-size: 24rpx;
+   color: #717171;
+   line-height: 36rpx;
+   margin-top: 8rpx;
+}
+.item-container .info-content .price{
+   font-size: 24rpx;
+   line-height: 44rpx;
+   margin-top: 8rpx;
+}
+.item-container .info-content .price .normal-price{
+   color: #717171;
+}
+.item-container .info-content .price .normal-price .data{
+   font-size: 28rpx;
+   margin-left: 10rpx;
+   color: #ff6533;
+}

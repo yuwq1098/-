@@ -26,6 +26,17 @@ const beforeFormatTime = (str) => {
 }
 
 /**
+ * 强险是否过期，有否交强险
+ */
+const compulsoryDataIsOut = (str) => {
+  if (!str) return ''
+  var date = new Date(str.replace(/[-]/g, '/'));
+  var time = new Date().getTime() - date.getTime();
+
+  return time > 0 ? '无' : '有';
+}
+
+/**
  * 价格小数加零,单位万
  */
 const priceToFixed = (data, num = 1) => {
@@ -53,9 +64,27 @@ const dateFnToYear = (data) => {
 /**
  * 转换成 xx.xx 万公里
  */
-export const mileFn = (data, num = 1) => {
+const mileFn = (data, num = 1) => {
   var number = data || 0;
   return parseInt(number).toFixed(num) + "万公里"
+}
+
+/**
+ * 日期转换  YYYY-mm-DD
+ */
+const dateDayFormat = (data) => {
+  if (!data && data != 0) return;
+  var data = data && data.substr(0, 10);
+  return data.toString();
+}
+
+/**
+ * 综合油耗单位
+ */
+const literFn = (data, num = 1) => {
+  if (!data) return;
+  var number = data || 0;
+  return parseFloat(number).toFixed(num) + " L/100km"
 }
 
 module.exports = {
@@ -63,6 +92,9 @@ module.exports = {
   priceToFixed,
   cityFn,
   dateFnToYear,
-  mileFn
+  mileFn,
+  dateDayFormat,
+  compulsoryDataIsOut,
+  literFn,
 }
 

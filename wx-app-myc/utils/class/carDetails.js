@@ -1,3 +1,5 @@
+const getters = require('../getter.js');
+
 // 车辆基本信息的构造类
 class basicInfo {
   constructor(data) {
@@ -49,6 +51,19 @@ class basicInfo {
     this.isPostToRetail = data.PostToRetailMarket || ""   // 是否发布到普通二手车市场
     this.shelveTime = data.ShelveTime || ""               // 上架或刷新上架时间
 
+    /**
+     * 在构造类中做字段过滤器
+     */
+    this.retailPrice = getters.priceToFixed(this.retailPrice, 2);
+    // 上牌日期
+    this.plateDate = getters.dateDayFormat(this.plateDate);
+    // 行驶里程
+    this.mileage = getters.mileFn(this.mileage);
+    // 有否交强险
+    this.compulsoryDataIsOut = getters.compulsoryDataIsOut(this.compulsoryData);
+    // 综合油耗
+    this.liter = getters.literFn(0);
+
   }
 }
 
@@ -99,6 +114,8 @@ class otherInfo {
     this.isInCart = data.HasInCart || ""                   // 购物车：0=未收藏，1=已收藏
     this.isInFavorite = data.HasInFavorite || ""           // 收藏夹：0=未收藏，1=已收藏
     this.onSellCount = data.SellCarCount || ""             // 卖家在售车辆数，建议如果为0时，不要在ui展示
+
+    this.theAuthType = this.authType=='个人车行'?'个人车商':'企业车商'
   }
 }
 

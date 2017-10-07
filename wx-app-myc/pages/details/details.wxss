@@ -1,3 +1,5 @@
+@import "./item/item.wxss";
+
 page {
   background: #f2f2f2;
 }
@@ -61,13 +63,13 @@ page {
 .main-box .top-info {
   background: #fff;
   box-sizing: border-box;
-  padding: 16rpx 20rpx;
+  padding: 20rpx 20rpx;
 }
 
 .main-box .top-info .car-title {
   max-height: 92rpx;
   line-height: 46rpx;
-  font-size: 34rpx;
+  font-size: 30rpx;
   color: #333;
   letter-spacing: 1rpx;
   text-indent: 1rpx;
@@ -82,7 +84,7 @@ page {
 .main-box .top-info .price-box {
   height: 40rpx;
   line-height: 40rpx;
-  font-size: 26rpx;
+  font-size: 24rpx;
   margin: 16rpx 0 0;
   display: flex;
   flex-direction: row;
@@ -94,7 +96,7 @@ page {
 .main-box .top-info .price-box .vital {
   margin-left: 8rpx;
   color: #ff6533;
-  font-size: 32rpx;
+  font-size: 30rpx;
   text-decoration: line-through;
 }
 
@@ -106,6 +108,7 @@ page {
 
 .main-box .basic-info {
   min-height: 280rpx;
+  /* display: none; */
 }
 
 .main-box .basic-info .info-head {
@@ -136,8 +139,8 @@ page {
 }
 
 .main-box .basic-info .info-content .update-time {
-  height: 44rpx;
-  line-height: 44rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   color: #717171;
   font-size: 26rpx;
   text-align: center;
@@ -161,7 +164,7 @@ page {
   float: left;
   margin-left: 15rpx;
   text-align: center;
-  font-size: 26rpx;
+  font-size: 24rpx;
   color: #999;
   margin-bottom: 16rpx;
 }
@@ -170,7 +173,7 @@ page {
   height: 54rpx;
   line-height: 54rpx;
   color: #333;
-  font-size: 32rpx;
+  font-size: 30rpx;
 }
 
 .main-box .car-basic-tb .info-list .info-item .u-attr {
@@ -208,20 +211,19 @@ page {
 .main-box .more-info .info-box {
   background-color: #fff;
   box-sizing: border-box;
-  padding: 16rpx 20rpx 6rpx;
+  padding: 20rpx 20rpx 12rpx;
 }
 
 .main-box .more-info .info-box .more-list {
   display: block;
-  color: #333;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 
 .main-box .more-info .info-box .more-item {
-  width: 300rpx;
+  width: 340rpx;
   height: 94rpx;
   float: left;
-  margin-bottom: 10rpx;
+  margin-bottom: 12rpx;
 }
 
 .main-box .more-info .info-box .more-item .u-attr,
@@ -238,18 +240,17 @@ page {
   height: 50rpx;
   line-height: 50rpx;
   color: #333;
-  font-size: 32rpx;
+  font-size: 30rpx;
 }
 
 /* 车商信息 */
-
 .main-box .CDG-info {
-  height: 180rpx;
   box-sizing: border-box;
   margin-top: 16rpx;
   background-color: #fff;
   position: relative;
-  padding: 20rpx 20rpx 0 160rpx;
+  padding: 20rpx 20rpx 16rpx 160rpx;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .main-box .CDG-info .CDG-avatar {
@@ -268,4 +269,126 @@ page {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+.main-box .CDG-info .content-info {
+  width: 100%;
+  font-size: 24rpx;
+  position: relative;
+}
+
+.main-box .CDG-info .content-info .c-name {
+  font-size: 30rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  color: #333;
+  max-width: 420rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.main-box .CDG-info .content-info .auth-type {
+  position: absolute;
+  right: 0rpx;
+  top: 3rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  padding: 0 15rpx;
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+}
+
+.main-box .CDG-info .content-info .auth-type.v1 {
+  background-color: #269bcc;
+  background: -moz-linear-gradient(left, #5182EF, #58C0F1);
+  background: -o-linear-gradient(left, #5182EF, #58C0F1);
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#5182EF), to(#58C0F1));
+}
+
+.main-box .CDG-info .content-info .auth-type.v2 {
+  background-color: #26ccab;
+  background: -moz-linear-gradient(left, #36D4B7, #7CFDB0);
+  background: -o-linear-gradient(left, #36D4B7, #7CFDB0);
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#36D4B7), to(#7CFDB0));
+}
+
+.main-box .CDG-info .content-info .contact {
+  margin-top: 8rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: #717171;
+}
+
+.main-box .CDG-info .content-info .contact .contact-tel {
+  margin-left: 28rpx;
+}
+
+.main-box .CDG-info .content-info .address {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  max-height: 84rpx;
+  line-height: 42rpx;
+  color: #717171;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* 在售车辆信息 */
+.main-box .onSale-info{
+  background-color: #fff;
+  padding: 20rpx 20rpx 4rpx 20rpx;
+}
+.main-box .onSale-info .info-head{
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #717171;
+}
+.main-box .onSale-info .list-box{
+  width: 100%;
+  margin-top: 20rpx;
+}
+.main-box .onSale-info .onsale-list{
+  width: 100%;
+}
+.main-box .onSale-info .onsale-list .item{
+  display: block;
+  margin-bottom: 16rpx;
+}
+/* 查看全部 */
+.main-box .btn-box{
+  height: 64rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10rpx;
+  margin-bottom: 22rpx;
+}
+.main-box .btn-box .all-view-btn{
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 45rpx;
+  text-align: center;
+  border: 1rpx solid #e2e2e2;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  letter-spacing: 3rpx;
+  text-indent: 3rpx;
+  color: #717171;
+}
+.main-box .btn-box .all-view-btn:active{
+  background-color: #f7f7f7;
+  color: #333;
 }
