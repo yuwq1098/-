@@ -73,6 +73,12 @@
         <text class="tips">正在加载更多...</text>
       </view>
     </block>
+    <!-- 已滑到底部 -->
+    <block wx:if="{{isNoneMore && !onceAgainNoneMore && resTotal>=4}}">
+      <view class="have-slippery">
+        <text class="tips">数据已全部加载，我是底线 ~~</text>
+      </view>
+    </block>
     <!-- 返回顶部 -->
     <view class="backToTop {{btt_active}}" catchtap='backToTop' style='display:flex;'>
       <image src='/static/images/i-backToTop.png'></image>

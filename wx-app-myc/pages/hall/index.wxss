@@ -200,6 +200,7 @@ page {
   width: 100%;
 }
 
+/* 加载更多 */
 .loading-more {
   height: 72rpx;
   line-height: 72rpx;
@@ -247,6 +248,23 @@ page {
 }
 
 .loading-more .tips {
+  font-size: 28rpx;
+  letter-spacing: 1rpx;
+  text-indent: 1rpx;
+  margin-left: 12rpx;
+  color: #717171;
+}
+
+/* 已滑到底 */
+.have-slippery{
+  height: 72rpx;
+  line-height: 72rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.have-slippery .tips{
   font-size: 28rpx;
   letter-spacing: 1rpx;
   text-indent: 1rpx;

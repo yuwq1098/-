@@ -34,6 +34,10 @@ Page({
     isLoadingMore: false,
     // 是否正在刷新
     isRefreshing: false,
+    // 没有更多，已经滑到底线
+    isNoneMore: false,
+    // 第二次过底线,不做提示
+    onceAgainNoneMore: false,
     // 列表单页加载大小
     listPageSize: system.hall_list_page_size,
 
@@ -90,7 +94,7 @@ Page({
       // CarBrandId: "",
       // CarInCity: "",
       // CarSeriesId: "",
-      Color: "黑色",
+      Color: "",
       // DischargeStandard: "",
       // GearType: "",
       // KeyCountFrom: "",
@@ -101,7 +105,7 @@ Page({
       // OnLicensePlateDateTo: "",
       PageIndex: this.data.currPageIndex,
       PageSize: this.data.listPageSize,
-      LikeKey: "宝马",
+      LikeKey: "",
       TS: this.data.TS,
       // ServiceCharacteristics: "",
       // SortType: "",
@@ -190,7 +194,16 @@ Page({
     if (this.data.isLoadingMore) return;
     // 如果没有多余的数据可加载，那么也return
     if (this.data.resTotal <= this.data.listPageSize * this.data.currPageIndex) {
-      console.log("无数据可加载，我是底线~~")
+      // 不允许再次过载
+      this.setData({
+        'isNoneMore': true,
+      })
+      setTimeout(()=>{
+        this.setData({
+          'isNoneMore': false,
+          'onceAgainNoneMore': true,
+        })
+      },2500)
       return;
     };
 
@@ -214,6 +227,7 @@ Page({
       'currPageIndex': 1,
     })
     wx.startPullDownRefresh();
+    this.reset();
     this.getB2bCarListInfo(this.getHallCarListSuccess);
   },
 
@@ -246,6 +260,17 @@ Page({
     // 防止触发刷新，所以比0大了1
     this.setData({
       "scrollTop": 1,
+    });
+  },
+
+  /**
+   * 部分数据重置
+   */
+  reset(){
+    this.setData({
+      "isNoneMore": false,
+      "onceAgainNoneMore": false,
+      "TS": ""
     });
   },
 
