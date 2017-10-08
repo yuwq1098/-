@@ -9,8 +9,8 @@
       autoplay="{{slideData.autoplay}}" interval="{{slideData.interval}}" duration="{{slideData.duration}}" circular="{{slideData.loop}}">
       <block wx:for="{{carImgData.imgItems}}" wx:item="item" wx:key="item">
         <swiper-item class="slide-item">
-          <!-- <image src="{{item.fileUrl}}" data-slideId="{{item}}"></image> -->
-          <view class="slide-imageFile" style="background: url('{{item.fileUrl}}') center center no-repeat; background-size: 100% auto;"></view>
+          <image src='{{item.fileUrl}}' class="slide-imageFile" mode="aspectFill"></image> 
+          <!-- <view class="slide-imageFile" style="background: url('{{item.fileUrl}}') center center no-repeat; background-size: 100% auto;"></view> -->
           <view class='other'>
             <view class='view-total'>浏览量: {{otherInfo.browseCount||0}}</view>
             <view class="curr-page">{{currSlideIndex}}/{{slidePageSize}}</view>

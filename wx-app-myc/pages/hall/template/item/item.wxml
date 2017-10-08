@@ -5,8 +5,8 @@
     <view class='main-info'>
       <view class="car-pic">
         <image src='/static/images/img-placeholder.png' class="placeholder"></image>
-        <!-- <image src='{{imgUrl}}' class="carImage"></image> -->
-        <view class="carImage" style="background: url('{{imgUrl}}') center center no-repeat; background-size: 100% auto;"></view>
+        <image src='{{imgUrl}}' class="carImage" mode="aspectFill"></image>
+        <!-- <view class="carImage" style="background: url('{{imgUrl}}') center center no-repeat; background-size: 100% auto;"></view> -->
       </view>
       <view class="info">
         <view class='title'>{{name}}</view>

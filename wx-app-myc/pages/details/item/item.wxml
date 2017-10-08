@@ -3,7 +3,8 @@
   <view class="item-container" catchtap="enterCarDetails" data-carid='{{id}}'>
     <view class="car-pic">
       <image src='/static/images/img-placeholder.png' class="placeholder"></image>
-      <view class="carImage" style="background: url('{{imgUrl}}') center center no-repeat; background-size: 100% auto;"></view>
+      <image src='{{imgUrl}}' class="carImage" mode="aspectFill"></image>
+      <!-- <view class="carImage" style="background: url('{{imgUrl}}') center center no-repeat; background-size: 100% auto;"></view> -->
     </view>
     <!-- 在售车辆的文字内容 -->
     <view class="info-content">

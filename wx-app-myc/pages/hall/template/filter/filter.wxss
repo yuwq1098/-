@@ -1,0 +1,246 @@
+/* pages/hall/template/filter/filter.wxss */
+
+/* 启用的遮罩层 */
+
+.mask-container {
+  width: 100%;
+}
+
+.mask-container .upper-part {
+  width: 100%;
+  height: 390rpx;
+  background-color: rgba(255, 255, 255, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.mask-container .lower-part {
+  width: 100%;
+  height: 1600rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 462rpx;
+  left: 0;
+  z-index: 11;
+}
+
+/* 简单的下拉选择 */
+
+.list-box {
+  width: 100%;
+  background-color: #f2f2f2;
+  position: absolute;
+  top: 462rpx;
+  left: 0;
+  z-index: 15;
+  padding: 16rpx 0 0;
+}
+
+.list-box .m-list {
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+
+.list-box .m-list .u-item {
+  width: 100%;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 26rpx;
+  color: #717171;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-box .m-list .u-item.active,
+.list-box .m-list .u-item.active.h-actived {
+  color: #31a3f5;
+}
+.list-box .m-list .u-item.h-actived{
+  color: #333;
+}
+
+.list-box .m-list .u-item .i-ticked {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.list-box .m-list .u-item:not(:last-child) {
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+/* 选择价格 */
+
+.view-container {
+  width: 100%;
+  background-color: #f2f2f2;
+  position: absolute;
+  top: 462rpx;
+  left: 0;
+  z-index: 15;
+  padding: 16rpx 0 0;
+}
+
+.view-container .view-inner {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx 4rpx;
+}
+
+.price-block-box {
+  width: 100%;
+}
+
+.price-block-box .block-list {
+  width: 732rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex: 1;
+  margin-left: -3rpx;
+}
+
+.price-block-box .block-list .item {
+  width: 228rpx;
+  margin-right: 16rpx;
+  height: 52rpx;
+  line-height: 48rpx;
+  font-size: 26rpx;
+  text-align: center;
+  margin-bottom: 14rpx;
+  flex: 0 auto;
+  box-sizing: border-box;
+  border: 1rpx solid #e2e2e2;
+  border-radius: 8rpx;
+  color: #717171;
+  background-color: #fafafa;
+}
+.price-block-box .block-list .item.active{
+  border: 1rpx solid #31a3f5;
+  color: #31a3f5;
+  background-color: #E0F2FF;
+}
+
+/* 自定义价格 */
+.custom-price-block{
+  width: 100%;
+  padding: 10rpx 0 20rpx 0;
+}
+.custom-price-block .tips-info{
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+}
+.custom-price-block .custom-tips,
+.custom-price-block .price-choice{
+  display: inline;
+}
+.custom-price-block .custom-tips{
+  float: left;
+  color: #717171;
+}
+.custom-price-block .custom-tips .unit{
+   color: #aaa;
+}
+.custom-price-block .price-choice{
+  float: right;
+  color: #31a3f5;
+}
+.custom-price-block .slider-section{
+  width: 600rpx;
+  margin: 0 auto 0;
+}
+.custom-price-block .slider-section .section{
+  width: 100%;
+}
+.custom-price-block .section .slider-movable{
+  width: 100%;
+  height: 42rpx;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 21rpx;
+}
+.custom-price-block .section .slider-movable .movable-bg-bar{
+  /* css计算 */
+  width: calc(100% - 42rpx);
+  height: 8rpx;
+  background-color: #e2e2e2;
+  border-radius: 6rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  overflow: hidden;
+}
+.custom-price-block .section .movable-bg-bar .progress-bar{
+  width: 27%;
+  position: absolute;
+  left: 0;
+  height: 8rpx;
+  border-radius: 6rpx;
+  background: #31a3f5;
+  background: -moz-linear-gradient(left, #5182EF, #58C0F1);
+  background: -o-linear-gradient(left, #5182EF, #58C0F1);
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#5182EF), to(#58C0F1));
+}
+.custom-price-block .section .slider-movable .section-btn{
+   width: 42rpx;
+   height: 42rpx;
+   border-radius: 50%;
+   position: absolute;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.custom-price-block .section .section-btn .btn-icon{
+  width: 100%;
+  height: 100%;
+}
+/* 价格标尺 */
+.custom-price-block .slider-section .price-ruler{
+   width: 100%;
+   height: 36rpx;
+   margin-top: 4rpx;
+   font-size: 24rpx;
+    display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between; 
+   box-sizing: border-box;
+   padding: 0 0 0 14rpx;
+   color: #717171;
+}
+.custom-price-block .price-rule .ruler{
+   flex: 1;
+}
+
+/* 确认按钮 */
+.custom-price-block .confirm-box{
+   padding: 30rpx 0 10rpx;
+}
+.custom-price-block .confirm-box .u-btn{
+  width: 360rpx;
+  margin: 0 auto;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 28rpx;
+  letter-spacing: 12rpx;
+  text-indent: 12rpx;
+  background-color: #31a3f5;
+  background: -moz-linear-gradient(135deg, #5182ef, #58c0f1);
+  background: -o-linear-gradient(135deg, #5182ef, #58c0f1);
+  background: -webkit-gradient(linear, 0% 0%, 100% 100%, from(#5182ef), to(#58c0f1));
+  color: #fff;
+  border: 1px solid #2D6AC5;
+
+}

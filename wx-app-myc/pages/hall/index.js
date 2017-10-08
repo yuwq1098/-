@@ -43,7 +43,7 @@ Page({
 
     // 时间戳，翻页防止数据变动冲突
     TS: "",
-    
+
 
     // 是否显示返回顶部
     isShowBackToTop: false,
@@ -64,7 +64,7 @@ Page({
     this.getB2bCarListInfo(this.getHallCarListSuccess);
     wx.getSystemInfo({
       success: function (res) {
-        console.info("窗口高度（不包含头部）", res.windowHeight);
+        // console.info("窗口高度（不包含头部）", res.windowHeight);
         that.setData({
           scrollHeight: res.windowHeight
         });
@@ -198,12 +198,12 @@ Page({
       this.setData({
         'isNoneMore': true,
       })
-      setTimeout(()=>{
+      setTimeout(() => {
         this.setData({
           'isNoneMore': false,
           'onceAgainNoneMore': true,
         })
-      },2500)
+      }, 2500)
       return;
     };
 
@@ -241,22 +241,22 @@ Page({
         "isShowBackToTop": true,
         'btt_active': 'active',
       });
-    }else{
+    } else {
       this.setData({
         'btt_active': '',
       });
-      setTimeout(()=>{
+      setTimeout(() => {
         this.setData({
           "isShowBackToTop": false,
         });
-      },300);
-      
+      }, 300);
+
     }
   },
   /**
    * 返回顶部
    */
-  backToTop(){
+  backToTop() {
     // 防止触发刷新，所以比0大了1
     this.setData({
       "scrollTop": 1,
@@ -266,12 +266,39 @@ Page({
   /**
    * 部分数据重置
    */
-  reset(){
+  reset() {
     this.setData({
       "isNoneMore": false,
       "onceAgainNoneMore": false,
       "TS": ""
     });
+  },
+
+  /**
+   * 城市选择(页面跳转)
+   */
+  citySelection() {
+    // 使用js动态导航跳转
+    wx.navigateTo({
+      url: "/pages/hall/city/city"
+    })
+  },
+
+  /**
+   * 品牌选择（页面跳转）
+   */
+  brandSelection() {
+    // 使用js动态导航跳转
+    wx.navigateTo({
+      url: "/pages/hall/brand/brand"
+    })
+  },
+
+  /**
+   * 价格选择移动
+   */
+  oppo(e){
+    console.log(e);
   },
 
   /**

@@ -1,5 +1,4 @@
 /**app.wxss**/
-
 page {
   display: block;
   min-height: 100%;

@@ -1,0 +1,112 @@
+<!-- 信息过滤组件 -->
+<template name="filter-component">
+  <!-- 筛选信息效果启用的遮罩层 -->
+  <block wx:if="{{true}}">
+    <view class='mask-container'>
+      <!-- 下面部分 -->
+      <view class="lower-part"></view>
+    </view>
+  </block>
+  <!-- 排序方式 -->
+  <block wx:if="{{true}}">
+    <view class="list-box select-sort">
+      <view class="m-list">
+        <view class="u-item active" hover-class="h-actived" hover-stay-time="200">
+          <text>默认排序</text>
+          <image class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
+        </view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">价格最低</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">价格最高</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">车龄最短</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">里程最少</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">最近更新</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">最新发布</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 选择价格 -->
+  <block wx:if="{{false}}">
+    <view class="view-container select-price">
+      <view class="view-inner">
+        <!-- 可选价格块 -->
+        <view class="price-block-box">
+          <view class="block-list">
+            <view class="item active">不限价格</view>
+            <view class="item">5万以内</view>
+            <view class="item">5-10万</view>
+            <view class="item">10-15万</view>
+            <view class="item">15-20万</view>
+            <view class="item">20-30万</view>
+            <view class="item">30-50万</view>
+            <view class="item">50-100万</view>
+            <view class="item">100万以上</view>
+          </view>
+        </view>
+        <!-- 自定义价格 -->
+        <view class="custom-price-block">
+          <view class="tips-info f__clearfix">
+            <view class="custom-tips">
+              <text>自定义</text>
+              <text class="unit"> /万元</text>
+            </view>
+            <view class="price-choice">
+              <text>27万-51万</text>
+            </view>
+          </view>
+          <view class="slider-section">
+            <view class="section">
+              <movable-area class="slider-movable">
+                <!-- 背景条 -->
+                <view class='movable-bg-bar'>
+                  <!-- 进度条 -->
+                  <view class='progress-bar'></view>
+                </view>
+                <!-- 左滑块 -->
+                <movable-view class="section-btn s1" x="0" y="0" bindtouchmove='oppo' direction="horizontal">
+                  <image class="btn-icon" src='/static/icon/slider-section-btn.png'></image>
+                </movable-view>
+                <!-- 右滑块 -->
+                <movable-view class="section-btn s1" x="80" y="0" direction="horizontal">
+                  <image class="btn-icon" src='/static/icon/slider-section-btn.png'></image>
+                </movable-view>
+              </movable-area>
+            </view>
+            <!-- 价格标尺 -->
+            <view class="price-ruler">
+              <view class='ruler r0'>0</view>
+              <view class='ruler r20'>20</view>
+              <view class='ruler r40'>40</view>
+              <view class='ruler r60'>60</view>
+              <view class='ruler r80'>80</view>
+              <view class='ruler r100'>100</view>
+              <view class='ruler max'>不限</view>
+            </view>
+          </view>
+          <!-- 确认按钮 -->
+          <view class="confirm-box">
+            <button class='u-btn' plain="true">确认</button>
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 排放方式 -->
+  <block wx:if="{{false}}">
+    <view class="list-box select-standard">
+      <view class="m-list">
+        <view class="u-item active" hover-class="h-actived" hover-stay-time="200">
+          <text>不限</text>
+          <image class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
+        </view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">国5</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">国4</view>
+        <view class="u-item" hover-class="h-actived" hover-stay-time="200">国3及以下</view>
+      </view>
+    </view>
+  </block>
+
+
+</template>

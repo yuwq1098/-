@@ -4,7 +4,10 @@
     "pages/welcome/welcome",
     "pages/details/details",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/hall/brand/brand",
+    "pages/hall/city/city",
+    "pages/hall/series/series"
   ],
   "window": {
     "navigationBarBackgroundColor": "#222",
