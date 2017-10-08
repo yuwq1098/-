@@ -138,6 +138,9 @@ page {
   align-items: center;
   justify-content: center;
 }
+.filter-list .item.active{
+  color: #31a3f5;
+}
 
 .filter-list .item image {
   width: 24rpx;

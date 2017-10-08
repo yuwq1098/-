@@ -9,6 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 显示loading组件
+    isShowLoading: false,
     // 轮播数据
     slideData: {
       vertical: false, // 是否纵向
@@ -53,6 +55,14 @@ Page({
     scrollHeight: 0,
     // 滚动条高度
     scrollTop: 0,
+    
+    // 筛选信息
+    filterData: {
+      // 遮罩层是否显示
+      theMaskIsShow: false,
+      // 默认排序是否显示
+      defaultSortIsShow: false,
+    },
 
   },
 
@@ -60,7 +70,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     var that = this;
+    // 显示加载数据动画
+    wx.showLoading({
+      title: '数据装载中...',
+      mask: true,
+      success: function () {
+         that.setData({
+           'isShowLoading': true,
+         })
+      }
+    })
     this.getB2bCarListInfo(this.getHallCarListSuccess);
     wx.getSystemInfo({
       success: function (res) {
@@ -123,11 +144,18 @@ Page({
   getHallCarListSuccess(res) {
     console.log(res)
     var b2bCarList = this.normalizeB2bCarInfo(res.data);
+    // 如果loading动画正在显示
+    if (this.data.isShowLoading){
+      setTimeout(()=>{
+        wx.hideLoading();
+      },200)
+    }
     this.setData({
       "b2bCarList": b2bCarList,
       "resTotal": res.total,
       "todayNewsCount": res.TodayCnt,
       'TS': res.TS,
+      'isShowLoading': false,
     })
     // 如果正在刷新，那么停止刷新特效
     if (this.data.isRefreshing) {
@@ -206,7 +234,7 @@ Page({
       }, 2500)
       return;
     };
-
+    
     this.setData({
       'isLoadingMore': true,
     })
@@ -221,6 +249,18 @@ Page({
   refresh: function (e) {
     // 如果正在刷新，那么return
     if (this.data.isRefreshing) return;
+
+    var that = this;
+    // 显示加载数据动画
+    wx.showLoading({
+      title: '数据刷新中...',
+      mask: true,
+      success: function () {
+        that.setData({
+          'isShowLoading': true,
+        })
+      }
+    })
 
     this.setData({
       'isRefreshing': true,

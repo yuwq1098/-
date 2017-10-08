@@ -37,9 +37,10 @@
     <!-- 信息筛选区 -->
     <view class='info-filter-box has-res-total'>
       <ul class="filter-list">
-        <view class='item'>
+        <view class="item {{filterData.defaultSortIsShow==true?'active':''}}">
           <text>默认排序</text>
-          <image src='/static/icon/i-arrow-down.png'></image>
+          <image src='/static/icon/i-arrow-down.png' wx:if="{{!filterData.defaultSortIsShow}}"></image> 
+          <image src='/static/icon/i-arrow-up-active.png' wx:else></image>
         </view>
         <view class='item' catchtap='brandSelection'>
           <text>不限品牌</text>
@@ -57,7 +58,7 @@
     </view>
     
     <!-- 过滤组件 -->
-    <template is="filter-component"></template>
+    <template is="filter-component" data="{{...filterData}}"></template>
 
     <!-- 匹配结果条数 -->
     <view class="res-total">

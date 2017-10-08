@@ -1,14 +1,14 @@
 <!-- 信息过滤组件 -->
 <template name="filter-component">
   <!-- 筛选信息效果启用的遮罩层 -->
-  <block wx:if="{{true}}">
+  <block wx:if="{{theMaskIsShow}}">
     <view class='mask-container'>
       <!-- 下面部分 -->
       <view class="lower-part"></view>
     </view>
   </block>
   <!-- 排序方式 -->
-  <block wx:if="{{true}}">
+  <block wx:if="{{defaultSortIsShow}}">
     <view class="list-box select-sort">
       <view class="m-list">
         <view class="u-item active" hover-class="h-actived" hover-stay-time="200">
