@@ -56,7 +56,7 @@ Page({
     scrollHeight: 0,
     // 滚动条高度
     scrollTop: 0,
-    
+
     // 筛选信息
     filterData: {
       // 遮罩层是否显示
@@ -70,7 +70,7 @@ Page({
     },
     // 当前打开的面板索引， 共3个，排序方式|价格选择|排放标准选择
     currPanelInde: "",
-    
+
     // 当前所选筛选条件文本
     filterText: {
       'sort': "默认排序",
@@ -83,9 +83,9 @@ Page({
     userFilterData: {},
     // 所选请求数据条件
     searchFilterData: {},
-    
+
     // 选择数据
-    choiceData:{
+    choiceData: {
       sortSelect: filter.SortTypeList,
       standardSelect: filter.DischargeStandard,
     }
@@ -96,27 +96,60 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
+    // // 异步的本地存储
+    // try {
+    //   var userFilterData = wx.getStorageSync('userFilterData')
+    //   if (userFilterData) {
+    //     this.setData({
+    //       'userFilterData': userFilterData,
+    //       'filterText.standard': userFilterData.dischargeStandard == '不限' || !userFilterData.dischargeStandard ? '排放标准' : userFilterData.dischargeStandard,
+    //       'filterText.sort': userFilterData.sortType || '排放标准',
+
+    //     })
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+
     var that = this;
-    // 显示加载数据动画
-    wx.showLoading({
-      title: '数据装载中...',
-      mask: true,
-      success: function () {
-         that.setData({
-           'isShowLoading': true,
-         })
-      }
-    })
-    this.getB2bCarListInfo(this.getHallCarListSuccess);
-    wx.getSystemInfo({
-      success: function (res) {
-        // console.info("窗口高度（不包含头部）", res.windowHeight);
-        that.setData({
-          scrollHeight: res.windowHeight
-        });
-      }
-    });
+
+    // 本地存储同步
+    // wx.getStorage({
+    //   key: 'searchFilterData',
+    //   success: function (res) {
+    //     that.setData({
+    //       'searchFilterData': res.data,
+    //     });
+    //     callBack();
+    //   }
+    // })
+    callBack();
+
+    // 获取本地存储后的回调
+    function callBack() {
+
+      // 显示加载数据动画
+      wx.showLoading({
+        title: '数据装载中...',
+        mask: true,
+        success: function () {
+          that.setData({
+            'isShowLoading': true,
+          })
+        }
+      })
+      that.getB2bCarListInfo(that.getHallCarListSuccess);
+      wx.getSystemInfo({
+        success: function (res) {
+          // console.info("窗口高度（不包含头部）", res.windowHeight);
+          that.setData({
+            scrollHeight: res.windowHeight
+          });
+        }
+      });
+    }
+
   },
 
   /**
@@ -160,13 +193,13 @@ Page({
     console.log(res)
     var b2bCarList = this.normalizeB2bCarInfo(res.data);
     // 如果loading动画正在显示
-    if (this.data.isShowLoading){
-      setTimeout(()=>{
+    if (this.data.isShowLoading) {
+      setTimeout(() => {
         wx.hideLoading();
         this.setData({
           'isShowLoading': false,
         })
-      },100)
+      }, 100)
     }
     this.setData({
       "b2bCarList": b2bCarList,
@@ -252,7 +285,7 @@ Page({
       }, 2500)
       return;
     };
-    
+
     this.setData({
       'isLoadingMore': true,
     })
@@ -353,19 +386,19 @@ Page({
       url: "/pages/hall/brand/brand"
     })
   },
-  
+
   /**
    * 打开/关闭 排序方式选择面板
    */
-  openSortChoice(){
+  openSortChoice() {
     this.closeAllPanel(1);
-    if (this.data.filterData.defaultSortIsShow){
+    if (this.data.filterData.defaultSortIsShow) {
       this.setData({
         'currPanelInde': "",
         'filterData.theMaskIsShow': false,
         'filterData.defaultSortIsShow': false,
       })
-    }else{
+    } else {
       this.setData({
         'currPanelInde': 1,
         'filterData.theMaskIsShow': true,
@@ -413,18 +446,18 @@ Page({
       })
     }
   },
-  
+
   /**
    * 关闭所有面板(有条件的)
    */
-  closeAllPanel(parmas){
+  closeAllPanel(parmas) {
     // 利用 data-close-parmas 传参
-    if (parmas.type == 'tap' && parmas.currentTarget.dataset.closeParmas=="all"){
+    if (parmas.type == 'tap' && parmas.currentTarget.dataset.closeParmas == "all") {
       this.closeAllPanelReal();
       return;
     }
     // 当前面板被切换了后将会重置面板数据
-    if (this.data.currPanelInde && this.data.currPanelInde != parmas){
+    if (this.data.currPanelInde && this.data.currPanelInde != parmas) {
       this.setData({
         'currPanelInde': "",
         'filterData.defaultSortIsShow': false,
@@ -437,7 +470,7 @@ Page({
   /**
    * 关闭所有面板(完全的)
    */
-  closeAllPanelReal(){
+  closeAllPanelReal() {
     this.setData({
       'currPanelInde': "",
       'filterData.theMaskIsShow': false,
@@ -450,12 +483,12 @@ Page({
   /**
    * 排序规则切换
    */
-  changeSort(e){
+  changeSort(e) {
     var theKey = e.currentTarget.dataset.key;
     var theLabel = e.currentTarget.dataset.label;
     this.setData({
       'userFilterData.sortType': theLabel,
-      'searchFilterData.SortType': theKey=='-1'?'':theKey,
+      'searchFilterData.SortType': theKey == '-1' ? '' : theKey,
       'filterText.sort': theLabel,
     });
     // 关闭所有面板(完全的)
@@ -480,34 +513,53 @@ Page({
     // 重新拉取数据（带过滤条件）
     this.getNewB2bCarList();
   },
-  
+
   /**
    * 重新拉取数据（带过滤条件）
    */
   getNewB2bCarList() {
+    // 本地存储（同步）
+    // try {
+    //   wx.setStorageSync("userFilterData", this.data.userFilterData);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    // 设置本地存储（异步）
+    // wx.setStorage({
+    //   key: "searchFilterData",
+    //   data: this.data.searchFilterData,
+    //   success: callBack
+    // });
+    
+    
     var that = this;
-    // 显示加载数据动画
-    wx.showLoading({
-      title: '数据刷新中...',
-      mask: true,
-      success: function () {
-        that.setData({
-          'isShowLoading': true,
-        })
-      }
-    })
+    callBack();
+    // 回调
+    function callBack() {
+      // 显示加载数据动画
+      wx.showLoading({
+        title: '数据刷新中...',
+        mask: true,
+        success: function () {
+          that.setData({
+            'isShowLoading': true,
+          })
+        }
+      })
 
-    this.setData({
-      'currPageIndex': 1,
-    })
-    this.reset();
-    this.getB2bCarListInfo(this.getHallCarListSuccess);
+      that.setData({
+        'currPageIndex': 1,
+      })
+      that.reset();
+      that.getB2bCarListInfo(that.getHallCarListSuccess);
+    }
+
   },
 
   /**
    * 价格选择移动
    */
-  oppo(e){
+  oppo(e) {
     console.log(e);
   },
 
