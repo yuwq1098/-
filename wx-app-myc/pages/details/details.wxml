@@ -106,7 +106,7 @@
       </view>
       <view class="content-info">
         <!-- 车行名称 -->
-        <view class="c-name">{{otherInfo.cdgName}}{{otherInfo.cdgName}}{{otherInfo.cdgName}}{{otherInfo.cdgName}}</view>
+        <view class="c-name">{{otherInfo.cdgName}}</view>
         <!-- 身份标识 -->
         <view class="auth-type v1" wx:if="{{otherInfo.theAuthType=='个人车商'}}">{{otherInfo.theAuthType}}</view>
         <view class="auth-type v2" wx:else>{{otherInfo.theAuthType}}</view>

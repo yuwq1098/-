@@ -2,7 +2,7 @@
 <template name="filter-component">
   <!-- 筛选信息效果启用的遮罩层 -->
   <block wx:if="{{theMaskIsShow}}">
-    <view class='mask-container'>
+    <view class='mask-container' catchtap="closeAllPanel" data-close-parmas='all'>
       <!-- 下面部分 -->
       <view class="lower-part"></view>
     </view>
@@ -11,22 +11,23 @@
   <block wx:if="{{defaultSortIsShow}}">
     <view class="list-box select-sort">
       <view class="m-list">
-        <view class="u-item active" hover-class="h-actived" hover-stay-time="200">
-          <text>默认排序</text>
-          <image class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
-        </view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">价格最低</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">价格最高</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">车龄最短</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">里程最少</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">最近更新</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">最新发布</view>
+        <block wx:for="{{sortSelect}}" wx:item="item" wx:key="item">
+          <view class="u-item {{(sortType&&sortType==item.label)||(!sortType&&item.isChecked)?'active':''}}"
+            hover-class="h-actived" 
+            hover-stay-time="200"
+            data-key="{{item.value}}" data-label="{{item.label}}"
+            catchtap='changeSort'>
+            <text>{{item.label}}</text>
+            <image wx:if="{{(sortType&&sortType==item.label)||(!sortType&&item.isChecked)}}" 
+              class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
+          </view>
+        </block>
       </view>
     </view>
   </block>
 
   <!-- 选择价格 -->
-  <block wx:if="{{false}}">
+  <block wx:if="{{priceChoiceIsShow}}">
     <view class="view-container select-price">
       <view class="view-inner">
         <!-- 可选价格块 -->
@@ -94,16 +95,20 @@
   </block>
 
   <!-- 排放方式 -->
-  <block wx:if="{{false}}">
+  <block wx:if="{{standardChoiceIsShow}}">
     <view class="list-box select-standard">
       <view class="m-list">
-        <view class="u-item active" hover-class="h-actived" hover-stay-time="200">
-          <text>不限</text>
-          <image class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
-        </view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">国5</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">国4</view>
-        <view class="u-item" hover-class="h-actived" hover-stay-time="200">国3及以下</view>
+        <block wx:for="{{standardSelect}}" wx:item="item" wx:key="item">
+          <view class="u-item {{(dischargeStandard&&dischargeStandard==item.label)||(!dischargeStandard&&item.isChecked)?'active':''}}"
+            hover-class="h-actived" 
+            hover-stay-time="200"
+            data-key="{{item.value}}" data-label="{{item.label}}"
+            catchtap='changeStandard'>
+            <text>{{item.label}}</text>
+            <image wx:if="{{(dischargeStandard&&dischargeStandard==item.label)||(!dischargeStandard&&item.isChecked)}}" 
+              class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
+          </view>
+        </block>
       </view>
     </view>
   </block>

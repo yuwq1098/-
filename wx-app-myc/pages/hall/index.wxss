@@ -142,6 +142,13 @@ page {
   color: #31a3f5;
 }
 
+.filter-list .item text {
+   max-width: 100rpx;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
 .filter-list .item image {
   width: 24rpx;
   height: 24rpx;
