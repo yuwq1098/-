@@ -16,10 +16,11 @@
       </view>
       <!-- 输入框 -->
       <view class='input-box'>
-        <input placeholder="请搜索： 车行、品牌、车型" />
+        <input placeholder="请搜索： 车行、品牌、车型" bindinput="keywordSrcInput" 
+            confirm-type="search" bindconfirm="keywordSearch" value="{{searchKeywords}}"/>
       </view>
       <!-- 搜索按钮 -->
-      <view class='search-btn'>
+      <view class='search-btn' bindtap='keywordSearch'>
         <image src='/static/icon/i-search.png'></image>
       </view>
     </view>
@@ -63,7 +64,7 @@
     </view>
     
     <!-- 过滤组件 -->
-    <template is="filter-component" data="{{...filterData,...choiceData,...userFilterData}}"></template>
+    <template is="filter-component" data="{{...filterData,...choiceData,...userFilterData,...theCustomPrice}}"></template>
 
     <!-- 匹配结果条数 -->
     <view class="res-total">
@@ -74,6 +75,15 @@
         <span>新增 {{todayNewsCount}} 辆</span>
       </view>
     </view>
+    
+    <!-- 无数据加载(缺省页) -->
+    <block wx:if="{{isLoadEnd&&resTotal==0}}">
+        <view class="none-data-view" style='height:{{nonoDataHeight}}px'>
+            <image class="pic" src='/static/images/img-none-data.jpg'></image>
+            <text class='tips'>找不到相关数据~~</text>
+        </view>
+    </block>
+
     <!-- 车辆信息列表区 -->
     <view class='b2b-car-list-box'>
       <template is="carList" data="{{b2bCarList}}" />

@@ -37,6 +37,8 @@ Page({
     isLoadingMore: false,
     // 是否正在刷新
     isRefreshing: false,
+    // 是否已加载过
+    isLoadEnd: false,
     // 没有更多，已经滑到底线
     isNoneMore: false,
     // 第二次过底线,不做提示
@@ -47,7 +49,6 @@ Page({
     // 时间戳，翻页防止数据变动冲突
     TS: "",
 
-
     // 是否显示返回顶部
     isShowBackToTop: false,
     btt_active: '',
@@ -56,6 +57,12 @@ Page({
     scrollHeight: 0,
     // 滚动条高度
     scrollTop: 0,
+    
+    // 缺省容器高度
+    nonoDataHeight: 400,
+
+    // 搜索关键字
+    searchKeywords: "",
 
     // 筛选信息
     filterData: {
@@ -68,6 +75,7 @@ Page({
       // 排放方式选择是否显示
       standardChoiceIsShow: false,
     },
+
     // 当前打开的面板索引， 共3个，排序方式|价格选择|排放标准选择
     currPanelInde: "",
 
@@ -89,7 +97,25 @@ Page({
       sortSelect: filter.SortTypeList,
       standardSelect: filter.DischargeStandard,
       priceSelect: filter.SearchPriceRange,
-    }
+    },
+
+    // 用户当前选择的
+    theCustomPrice: {
+      priceText: "45万以下",
+      currPrice_min: "",
+      currPrice_max: "45",
+      p_left: '0',
+      p_width: '105',
+      p_x1: 0,
+      p_x2: 105,
+
+    },
+
+    // 滑块位置信息
+    sliderPositionInfo: {
+      slider_min: "48",
+      slider_max: "328",
+    },
 
   },
 
@@ -143,9 +169,11 @@ Page({
       that.getB2bCarListInfo(that.getHallCarListSuccess);
       wx.getSystemInfo({
         success: function (res) {
+          console.log(res)
           // console.info("窗口高度（不包含头部）", res.windowHeight);
           that.setData({
-            scrollHeight: res.windowHeight
+            scrollHeight: res.windowHeight,
+            nonoDataHeight: res.windowHeight - 271 + 14,
           });
         }
       });
@@ -170,7 +198,7 @@ Page({
   getB2bCarListInfo(callBack) {
     var that = this;
     var data = {
-      
+
       // CarInCity: "",
       // CarSeriesId: "",
       Color: "",
@@ -179,7 +207,7 @@ Page({
       PageSize: this.data.listPageSize,
       B2BPriceFrom: this.data.searchFilterData.B2BPriceFrom || "",
       B2BPriceTo: this.data.searchFilterData.B2BPriceTo || "",
-      LikeKey: "",
+      LikeKey: this.data.searchFilterData.LikeKey || "",
       TS: this.data.TS,
       SortType: this.data.searchFilterData.SortType || "",
     }
@@ -192,6 +220,7 @@ Page({
    * 成功获取数据的回调函数
    */
   getHallCarListSuccess(res) {
+    
     console.log(res)
     var b2bCarList = this.normalizeB2bCarInfo(res.data);
     // 如果loading动画正在显示
@@ -204,6 +233,7 @@ Page({
       }, 100)
     }
     this.setData({
+      "isLoadEnd": true,
       "b2bCarList": b2bCarList,
       "resTotal": res.total,
       "todayNewsCount": res.TodayCnt,
@@ -390,6 +420,28 @@ Page({
   },
 
   /**
+   * 关键词输入
+   */
+  keywordSrcInput(e) {
+    var theValue = e.detail.value;
+    this.setData({
+      'searchKeywords': theValue,
+    })
+  },
+
+  /**
+   * 关键词搜索
+   */
+  keywordSearch() {
+    var theKeywords = this.data.searchKeywords;
+    this.setData({
+      'searchFilterData.LikeKey': theKeywords,
+    })
+    // 重新拉取数据（带过滤条件）
+    this.getNewB2bCarList();
+  },
+
+  /**
    * 打开/关闭 排序方式选择面板
    */
   openSortChoice() {
@@ -505,8 +557,9 @@ Page({
   changeStandard(e) {
     var theKey = e.currentTarget.dataset.key;
     var theLabel = e.currentTarget.dataset.label;
+    // 显示在首页的文本
     var theShowText = "";
-    switch (theLabel){
+    switch (theLabel) {
       case '不限':
         theShowText = "排放标准";
         break;
@@ -515,8 +568,9 @@ Page({
         break;
       default:
         theShowText = theLabel;
-        break;  
+        break;
     }
+    // 设置相关data
     this.setData({
       'userFilterData.dischargeStandard': theLabel,
       'searchFilterData.DischargeStandard': theLabel == '不限' ? '' : theLabel,
@@ -527,11 +581,11 @@ Page({
     // 重新拉取数据（带过滤条件）
     this.getNewB2bCarList();
   },
-  
+
   /**
    * 价格区间选择
-   */ 
-  changePrice(e){
+   */
+  changePrice(e) {
     var theLabel = e.currentTarget.dataset.label;
     var max = e.currentTarget.dataset.max;
     var min = e.currentTarget.dataset.min;
@@ -546,6 +600,119 @@ Page({
     // 重新拉取数据（带过滤条件）
     this.getNewB2bCarList();
   },
+
+  s1TouchMove(e) {
+
+    var sliderMin = this.data.sliderPositionInfo.slider_min;
+    var pageX = e.touches[0].pageX;
+    // 边界值判断
+    if (pageX < sliderMin) {
+      pageX = sliderMin;
+    } else if (pageX >= this.data.sliderPositionInfo.slider_max) {
+      pageX = this.data.sliderPositionInfo.slider_max;
+    }
+    // 两个滑块边界碰撞
+    if (pageX >= this.data.theCustomPrice.p_x2 + Number(sliderMin)) {
+      pageX = this.data.theCustomPrice.p_x2 + Number(sliderMin);
+    }
+
+    // 滑块的left值
+    var theBlockLeft = pageX - sliderMin;
+    // 滑块区间  相关样式
+    var theSliderLeft = theBlockLeft + 6;
+    var theSliderWidth = this.data.theCustomPrice.p_x2 - theBlockLeft;
+
+    this.setData({
+      'theCustomPrice.p_x1': theBlockLeft,
+      'theCustomPrice.p_left': theSliderLeft,
+      'theCustomPrice.p_width': theSliderWidth,
+    });
+    // 设置自定义价格相关数据
+    this.renderCustomPrice();
+  },
+
+  s2TouchMove(e) {
+
+    var sliderMin = this.data.sliderPositionInfo.slider_min;
+    var pageX = e.touches[0].pageX;
+    // 边界值判断
+    if (pageX < sliderMin) {
+      pageX = sliderMin;
+    } else if (pageX >= this.data.sliderPositionInfo.slider_max) {
+      pageX = this.data.sliderPositionInfo.slider_max;
+    }
+    // 两个滑块边界碰撞
+    if (pageX <= this.data.theCustomPrice.p_x1 + Number(sliderMin)) {
+      pageX = this.data.theCustomPrice.p_x1 + Number(sliderMin);
+    }
+
+    // 滑块的left值
+    var theBlockLeft = this.data.theCustomPrice.p_x1;
+    // 滑块区间  相关样式
+    var theSliderLeft = theBlockLeft + 6;
+    var theSliderWidth = pageX - theBlockLeft - sliderMin;
+
+    this.setData({
+      'theCustomPrice.p_x2': pageX - sliderMin,
+      'theCustomPrice.p_left': theSliderLeft,
+      'theCustomPrice.p_width': theSliderWidth,
+    });
+    // 设置自定义价格相关数据
+    this.renderCustomPrice();
+  },
+
+  /**
+   * 设置自定义价格相关数据
+   */
+  renderCustomPrice() {
+    var min = Math.ceil(this.data.theCustomPrice.p_x1 / (2.80 / 1.2));
+    var max = Math.ceil(this.data.theCustomPrice.p_x2 / (2.80 / 1.2));
+    var search_min = "";
+    var search_max = "";
+    // 设置自定义的文本
+    var theCustomPriceText = "";
+    if (min == 0 && max == "120") {
+      theCustomPriceText = "不限价格"
+    } else if (min == 0 && max != "120") {
+      theCustomPriceText = max + "万以下";
+      search_min = "";
+      search_max = max;
+    } else if (min != 0 && max == "120") {
+      theCustomPriceText = min + "万以上";
+      search_min = min;
+      search_max = "";
+    } else {
+      theCustomPriceText = min + "-" + max + "万";
+      search_min = min;
+      search_max = max;
+    }
+
+    this.setData({
+      'theCustomPrice.priceText': theCustomPriceText,
+      'theCustomPrice.currPrice_min': search_min,
+      'theCustomPrice.currPrice_max': search_max,
+    })
+  },
+
+  /**
+   * 确认自定义选择价格
+   */
+  confirmCustomPrice() {
+    var min = this.data.theCustomPrice.currPrice_min;
+    var max = this.data.theCustomPrice.currPrice_max;
+    var theLabel = this.data.theCustomPrice.priceText;
+    this.setData({
+      'userFilterData.price': theLabel,
+      'searchFilterData.B2BPriceFrom': min == '不限价格' ? '' : min,
+      'searchFilterData.B2BPriceTo': max == '不限价格' ? '' : max,
+      'filterText.price': theLabel == '不限价格' ? '全部价格' : theLabel,
+    });
+    // 关闭所有面板(完全的)
+    this.closeAllPanelReal();
+    // 重新拉取数据（带过滤条件）
+    this.getNewB2bCarList();
+  },
+
 
   /**
    * 重新拉取数据（带过滤条件）
@@ -563,8 +730,8 @@ Page({
     //   data: this.data.searchFilterData,
     //   success: callBack
     // });
-    
-    
+
+
     var that = this;
     callBack();
     // 回调
@@ -576,6 +743,7 @@ Page({
         success: function () {
           that.setData({
             'isShowLoading': true,
+            'isLoadEnd': false,
           })
         }
       })

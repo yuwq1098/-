@@ -43,26 +43,30 @@
               <text class="unit"> /万元</text>
             </view>
             <view class="price-choice">
-              <text>27万-51万</text>
+              <text>{{priceText}}</text>
             </view>
           </view>
           <view class="slider-section">
             <view class="section">
-              <movable-area class="slider-movable">
+              <view class="slider-movable">
                 <!-- 背景条 -->
                 <view class='movable-bg-bar'>
                   <!-- 进度条 -->
-                  <view class='progress-bar'></view>
+                  <view class='progress-bar' style='width:{{p_width}}px;left:{{p_left}}px;'></view>
                 </view>
                 <!-- 左滑块 -->
-                <movable-view class="section-btn s1" x="0" y="0" bindtouchmove='oppo' direction="horizontal">
+                <view class="section-btn s1" style="left:{{p_x1}}px"
+                    bindtouchmove='s1TouchMove'
+                  >
                   <image class="btn-icon" src='/static/icon/slider-section-btn.png'></image>
-                </movable-view>
+                </view>
                 <!-- 右滑块 -->
-                <movable-view class="section-btn s1" x="80" y="0" direction="horizontal">
+                <view class="section-btn s1" style="left:{{p_x2}}px"
+                    bindtouchmove='s2TouchMove'
+                  >
                   <image class="btn-icon" src='/static/icon/slider-section-btn.png'></image>
-                </movable-view>
-              </movable-area>
+                </view>
+              </view>
             </view>
             <!-- 价格标尺 -->
             <view class="price-ruler">
@@ -77,7 +81,7 @@
           </view>
           <!-- 确认按钮 -->
           <view class="confirm-box">
-            <button class='u-btn' plain="true">确认</button>
+            <button class='u-btn' bindtap='confirmCustomPrice' plain="true">确认</button>
           </view>
 
         </view>
