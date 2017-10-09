@@ -88,6 +88,7 @@ Page({
     choiceData: {
       sortSelect: filter.SortTypeList,
       standardSelect: filter.DischargeStandard,
+      priceSelect: filter.SearchPriceRange,
     }
 
   },
@@ -169,14 +170,15 @@ Page({
   getB2bCarListInfo(callBack) {
     var that = this;
     var data = {
-      // B2BPriceFrom: "",
-      // B2BPriceTo: "",
+      
       // CarInCity: "",
       // CarSeriesId: "",
       Color: "",
       DischargeStandard: this.data.searchFilterData.DischargeStandard || "",
       PageIndex: this.data.currPageIndex,
       PageSize: this.data.listPageSize,
+      B2BPriceFrom: this.data.searchFilterData.B2BPriceFrom || "",
+      B2BPriceTo: this.data.searchFilterData.B2BPriceTo || "",
       LikeKey: "",
       TS: this.data.TS,
       SortType: this.data.searchFilterData.SortType || "",
@@ -503,10 +505,41 @@ Page({
   changeStandard(e) {
     var theKey = e.currentTarget.dataset.key;
     var theLabel = e.currentTarget.dataset.label;
+    var theShowText = "";
+    switch (theLabel){
+      case '不限':
+        theShowText = "排放标准";
+        break;
+      case this.data.choiceData.standardSelect[3].label:
+        theShowText = "国3";
+        break;
+      default:
+        theShowText = theLabel;
+        break;  
+    }
     this.setData({
       'userFilterData.dischargeStandard': theLabel,
       'searchFilterData.DischargeStandard': theLabel == '不限' ? '' : theLabel,
-      'filterText.standard': theLabel == '不限' ? '排放标准' : theLabel,
+      'filterText.standard': theShowText,
+    });
+    // 关闭所有面板(完全的)
+    this.closeAllPanelReal();
+    // 重新拉取数据（带过滤条件）
+    this.getNewB2bCarList();
+  },
+  
+  /**
+   * 价格区间选择
+   */ 
+  changePrice(e){
+    var theLabel = e.currentTarget.dataset.label;
+    var max = e.currentTarget.dataset.max;
+    var min = e.currentTarget.dataset.min;
+    this.setData({
+      'userFilterData.price': theLabel,
+      'searchFilterData.B2BPriceFrom': min == '不限价格' ? '' : min,
+      'searchFilterData.B2BPriceTo': max == '不限价格' ? '' : max,
+      'filterText.price': theLabel == '不限价格' ? '全部价格' : theLabel,
     });
     // 关闭所有面板(完全的)
     this.closeAllPanelReal();

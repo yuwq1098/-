@@ -12,14 +12,9 @@
     <view class="list-box select-sort">
       <view class="m-list">
         <block wx:for="{{sortSelect}}" wx:item="item" wx:key="item">
-          <view class="u-item {{(sortType&&sortType==item.label)||(!sortType&&item.isChecked)?'active':''}}"
-            hover-class="h-actived" 
-            hover-stay-time="200"
-            data-key="{{item.value}}" data-label="{{item.label}}"
-            catchtap='changeSort'>
+          <view class="u-item {{(sortType&&sortType==item.label)||(!sortType&&item.isChecked)?'active':''}}" hover-class="h-actived" hover-stay-time="200" data-key="{{item.value}}" data-label="{{item.label}}" catchtap='changeSort'>
             <text>{{item.label}}</text>
-            <image wx:if="{{(sortType&&sortType==item.label)||(!sortType&&item.isChecked)}}" 
-              class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
+            <image wx:if="{{(sortType&&sortType==item.label)||(!sortType&&item.isChecked)}}" class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
           </view>
         </block>
       </view>
@@ -33,15 +28,11 @@
         <!-- 可选价格块 -->
         <view class="price-block-box">
           <view class="block-list">
-            <view class="item active">不限价格</view>
-            <view class="item">5万以内</view>
-            <view class="item">5-10万</view>
-            <view class="item">10-15万</view>
-            <view class="item">15-20万</view>
-            <view class="item">20-30万</view>
-            <view class="item">30-50万</view>
-            <view class="item">50-100万</view>
-            <view class="item">100万以上</view>
+            <block wx:for="{{priceSelect}}" wx:item="item" wx:key="item">
+              <view class="item {{(price&&price==item.label)||(!price&&item.isChecked)?'active':''}}" hover-class="h-actived" hover-stay-time="200" data-min="{{item.min}}" data-max="{{item.max}}" data-label="{{item.label}}" catchtap='changePrice'>
+                <text>{{item.label}}</text>
+              </view>
+            </block>
           </view>
         </view>
         <!-- 自定义价格 -->
@@ -99,14 +90,9 @@
     <view class="list-box select-standard">
       <view class="m-list">
         <block wx:for="{{standardSelect}}" wx:item="item" wx:key="item">
-          <view class="u-item {{(dischargeStandard&&dischargeStandard==item.label)||(!dischargeStandard&&item.isChecked)?'active':''}}"
-            hover-class="h-actived" 
-            hover-stay-time="200"
-            data-key="{{item.value}}" data-label="{{item.label}}"
-            catchtap='changeStandard'>
+          <view class="u-item {{(dischargeStandard&&dischargeStandard==item.label)||(!dischargeStandard&&item.isChecked)?'active':''}}" hover-class="h-actived" hover-stay-time="200" data-key="{{item.value}}" data-label="{{item.label}}" catchtap='changeStandard'>
             <text>{{item.label}}</text>
-            <image wx:if="{{(dischargeStandard&&dischargeStandard==item.label)||(!dischargeStandard&&item.isChecked)}}" 
-              class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
+            <image wx:if="{{(dischargeStandard&&dischargeStandard==item.label)||(!dischargeStandard&&item.isChecked)}}" class="i-ticked" src='/static/icon/i-checked-ok.png'></image>
           </view>
         </block>
       </view>
