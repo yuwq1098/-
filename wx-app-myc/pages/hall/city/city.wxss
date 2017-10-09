@@ -1,1 +1,169 @@
 /* pages/hall/city/city.wxss */
+page{
+  background-color: #fff;
+}
+
+.city-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 可滚动视图区域 */
+.city-container .scroll-view {
+  width: 100%;
+  height: 1300rpx;
+}
+
+.scroll-view .view-inner{
+  width: 692rpx;
+  box-sizing: border-box;
+  padding: 20rpx 26rpx 10rpx;
+}
+
+/* 城市展示组 */
+.city-group{
+  width: 640rpx;
+}
+.city-group .subtit{
+  height: 48rpx;
+  line-height: 48rpx;
+  margin-bottom: 8rpx;
+  color: #999;
+  font-size: 23rpx;
+}
+.city-group .city-wrap{
+  width: 660rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.city-group .city-wrap .c-block{
+  width: 202rpx;
+  text-align: center;
+  height: 56rpx;
+  line-height: 52rpx;
+  font-size: 26rpx;
+  border: 1rpx solid #f2f2f2;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
+  color: #717171;
+  letter-spacing: 8rpx;
+  text-indent: 8rpx;
+  border-color: #f2f2f2;
+  background-color: #fdfdfd;
+}
+.city-group .city-wrap .c-block.act:not(.act_curr){
+  color: #31a3f5;
+}
+/* 文本溢出隐藏 */
+.city-group .city-wrap .c-block .txt{
+  display: inline-block;
+  max-width: 175rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.city-group .city-wrap .c-block.act_curr{
+  border: 1rpx solid #31a3f5;
+  color: #31a3f5;
+  background-color: #F0F7FD;
+}
+
+/* 所有城市 */
+.all-city{
+  width: 640rpx;
+  padding: 30rpx 0 0;
+}
+.all-city .abc-group{
+  width: 100%;
+}
+.all-city .abc-group .subtit{
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-bottom: 15rpx;
+  display: flex;
+  align-items: center;
+}
+.all-city .abc-group .subtit .letter{
+  width: 38rpx;
+  text-align: center;
+  height: 38rpx;
+  line-height: 38rpx;
+  font-size: 22rpx;
+  color: #999;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 1px solid #f2f2f2;
+}
+.all-city .abc-group .city-wrap{
+  width: 660rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 0 16rpx;
+}
+.all-city .abc-group .city-wrap .c-link{
+   /* width: 150rpx;  */
+   height: 44rpx;
+   text-align: left;
+   line-height: 44rpx;
+   font-size: 27rpx;
+   margin-right: 45rpx;
+   margin-bottom: 15rpx;
+   color: #717171;
+}
+.all-city .abc-group .city-wrap .c-link.act{
+   color: #333;
+}
+/* 文本溢出隐藏 */
+.all-city .abc-group .city-wrap .c-link .txt{
+  display: block;
+  max-width: 280rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 热门城市 */
+.hot-city{
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* 侧边快速定位条 */
+.quick-lock-bar{
+   height: 782rpx;
+   width: 60rpx;
+   position: fixed;
+   top: 0;
+   z-index: 100;
+   bottom: 50rpx;
+   right: 10rpx;
+   margin: auto;
+   box-sizing: content-box;
+   padding: 12rpx 0;
+   background-color: #F0F7FD;
+   border-radius: 8rpx;
+}
+.quick-lock-bar .group-name-list{
+   width: 60rpx;
+}
+.quick-lock-bar .group-name-list .item{
+  font-size: 24rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  text-align: center;
+   color: #31a3f5; 
+  /* color: #717171; */
+}
+.quick-lock-bar .group-name-list .item.CN{
+  font-size: 22rpx;
+}

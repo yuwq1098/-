@@ -3,6 +3,7 @@ const util = require('../../utils/util.js')
 const filter = require('../../data/localJson/filter.js')
 const system = require('../../utils/system.js')
 
+const InitCurrCity = "全国";
 // pages/hall/index.js
 Page({
 
@@ -10,6 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
+    // 当前选择城市
+    currCity: InitCurrCity,
     // 显示loading组件
     isShowLoading: false,
     // 轮播数据
@@ -123,7 +127,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
     // // 异步的本地存储
     // try {
     //   var userFilterData = wx.getStorageSync('userFilterData')
@@ -138,7 +142,11 @@ Page({
     // } catch (error) {
     //   console.log(error);
     // }
-
+    var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
+    this.setData({
+      'currCity': currCity
+    })
+    
     var that = this;
 
     // 本地存储同步
@@ -182,6 +190,13 @@ Page({
   },
 
   /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    console.log("再次返回页面")
+  },
+
+  /**
    * 使用b2b抽象类完成carInfo
    */
   normalizeB2bCarInfo(list) {
@@ -199,7 +214,7 @@ Page({
     var that = this;
     var data = {
 
-      // CarInCity: "",
+      CarInCity: this.data.currCity == "全国" ? "" : this.data.currCity,
       // CarSeriesId: "",
       Color: "",
       DischargeStandard: this.data.searchFilterData.DischargeStandard || "",
@@ -768,13 +783,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 

@@ -11,7 +11,7 @@
     <view class='search-box'>
       <!-- 城市选择 -->
       <view class='city-select' catchtap='citySelection'>
-        <text>南昌</text>
+        <text>{{currCity}}</text>
         <image src='/static/icon/i-arrow-down.png'></image>
       </view>
       <!-- 输入框 -->

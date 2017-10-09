@@ -1,11 +1,11 @@
 {
   "pages": [
+    
     "pages/hall/index",
     "pages/welcome/welcome",
     "pages/details/details",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/hall/brand/brand",
     "pages/hall/city/city",
     "pages/hall/series/series"
   ],
