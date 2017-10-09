@@ -4,7 +4,17 @@ const City = require('../../../utils/class/city.js');
 
 const InitQuickLockHeight = 782;
 const InitCitysLetter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U'];
-const InitHotCity = ['全国','北京','深圳','上海','宁波','武汉','杭州','长沙','厦门'];
+const InitHotCity = [
+    { 'label': '全国', 'value': "" },
+    { 'label': '北京', 'value': "北京市" },
+    { 'label': '深圳', 'value': "深圳市" },
+    { 'label': '上海', 'value': "上海市" },
+    { 'label': '宁波', 'value': "宁波市" },
+    { 'label': '武汉', 'value': "武汉市" },
+    { 'label': '杭州', 'value': "杭州市" },
+    { 'label': '长沙', 'value': "长沙市" },
+    { 'label': '厦门', 'value': "厦门市" }
+  ]
 
 // pages/hall/city/city.js
 Page({

@@ -16,8 +16,8 @@
         <view class="subtit">热门</view>
         <view class='city-wrap'>
           <block wx:for="{{hotCity}}" wx:item="item" wx:key="item">
-            <view class="c-block" catchtap='chooseCity' data-city='{{item}}' hover-class="act" hover-stay-time="200">
-              <text class='txt'>{{item}}</text>
+            <view class="c-block" catchtap='chooseCity' data-city='{{item.value}}' hover-class="act" hover-stay-time="200">
+              <text class='txt'>{{item.label}}</text>
             </view>
           </block>
         </view>

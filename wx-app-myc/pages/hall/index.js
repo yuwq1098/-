@@ -127,65 +127,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    // // 异步的本地存储
-    // try {
-    //   var userFilterData = wx.getStorageSync('userFilterData')
-    //   if (userFilterData) {
-    //     this.setData({
-    //       'userFilterData': userFilterData,
-    //       'filterText.standard': userFilterData.dischargeStandard == '不限' || !userFilterData.dischargeStandard ? '排放标准' : userFilterData.dischargeStandard,
-    //       'filterText.sort': userFilterData.sortType || '排放标准',
 
-    //     })
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
-    this.setData({
-      'currCity': currCity
+    var that = this;
+    // 显示加载数据动画
+    wx.showLoading({
+      title: '数据装载中...',
+      mask: true,
+      success: function () {
+        that.setData({
+          'isShowLoading': true,
+        })
+      }
     })
     
-    var that = this;
-
-    // 本地存储同步
-    // wx.getStorage({
-    //   key: 'searchFilterData',
-    //   success: function (res) {
-    //     that.setData({
-    //       'searchFilterData': res.data,
-    //     });
-    //     callBack();
-    //   }
-    // })
-    callBack();
-
-    // 获取本地存储后的回调
-    function callBack() {
-
-      // 显示加载数据动画
-      wx.showLoading({
-        title: '数据装载中...',
-        mask: true,
-        success: function () {
-          that.setData({
-            'isShowLoading': true,
-          })
-        }
-      })
-      that.getB2bCarListInfo(that.getHallCarListSuccess);
-      wx.getSystemInfo({
-        success: function (res) {
-          console.log(res)
-          // console.info("窗口高度（不包含头部）", res.windowHeight);
-          that.setData({
-            scrollHeight: res.windowHeight,
-            nonoDataHeight: res.windowHeight - 271 + 14,
-          });
-        }
-      });
-    }
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res)
+        // console.info("窗口高度（不包含头部）", res.windowHeight);
+        that.setData({
+          scrollHeight: res.windowHeight,
+          nonoDataHeight: res.windowHeight - 271 + 14,
+        });
+      }
+    });
 
   },
 
@@ -193,7 +157,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("再次返回页面")
+    var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
+    this.setData({
+      'currCity': currCity
+    })
+    this.getB2bCarListInfo(this.getHallCarListSuccess);
+
   },
 
   /**
