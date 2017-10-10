@@ -189,7 +189,7 @@ page{
    height: 125rpx;
    position: fixed;
    top: 0;
-   right: 80rpx;
+   right: 40rpx;
    bottom: 30rpx;
    left: 0;
    margin: auto;

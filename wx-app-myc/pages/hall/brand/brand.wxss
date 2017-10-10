@@ -50,7 +50,7 @@ page{
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 25rpx 0 10rpx;
+  padding: 35rpx 0 0;
 }
 .hot-brand .hot-list .u-item{
   width: 138rpx;
@@ -63,8 +63,8 @@ page{
   margin-bottom: 15rpx;
 }
 .hot-brand .hot-list .u-item .pic{
-  width: 76rpx;
-  height: 76rpx;
+  width: 64rpx;
+  height: 64rpx;
   
 }
 .hot-brand .hot-list .u-item .txt{
@@ -96,8 +96,8 @@ page{
   border-bottom: 1rpx solid #ededed;
 }
 .group-brand .brand-list .item .icon{
-  width: 54rpx;
-  height: 54rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
 .group-brand .brand-list .item .txt{
   margin-left: 12rpx;
@@ -151,7 +151,7 @@ page{
    height: 125rpx;
    position: fixed;
    top: 0;
-   right: 80rpx;
+   right: 40rpx;
    bottom: 30rpx;
    left: 0;
    margin: auto;
@@ -162,7 +162,7 @@ page{
   height: 100%;
   opacity: .95;
 }
-.curr-brand-block .key{
+.curr-brand-block .pic-bx{
   width: 125rpx;
   text-align: center;
   height: 125rpx;
@@ -170,6 +170,16 @@ page{
   position: absolute;
   left: 0;
   top: 0;
-  color: #f7f7f7;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.curr-brand-block .pic-bx .icon{
+  width: 52rpx;
+  height: 52rpx;
+}
+.curr-brand-block .pic-bx .txt{
   font-size: 48rpx;
+  color: #f2f2f2;
 }

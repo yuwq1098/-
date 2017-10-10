@@ -8,6 +8,28 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    var that = this;
+    wx.getLocation({
+      success: function (res) {
+        wx.request({
+          url: 'https://api.map.baidu.com/geocoder/v2/?ak=btsVVWf0TM1zUBEbzFz6QqWF&callback=renderReverse&location=' + res.latitude + ',' + res.longitude + '&output=json&pois=1', data: {},
+          header: { 'Content-Type': 'application/json' },
+          success: function (ops) {
+            // 处理百度返回的数据
+            var dataString = ops.data;
+            dataString = dataString.replace(/.*renderReverse/, '');
+            dataString = dataString.substr(1, dataString.length-2);
+            // String 转成 JSON
+            var cityData = JSON.parse(dataString);
+            // 获取当前城市
+            var currCity = cityData.result.addressComponent.city;
+            that.globalData.currCityName = currCity;
+            
+          }
+        })
+      }
+    })
+
     // 登录
     wx.login({
       success: res => {
@@ -39,5 +61,6 @@ App({
   globalData: {
     userInfo: null,
     cityInfo: DATA.cityData,
+    currCityName: '',
   }
 })

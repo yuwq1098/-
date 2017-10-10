@@ -11,13 +11,13 @@ const cityData = {
 var allCityList = [],
     onlyCityList = [];
 
-var url_home = "https://www.muyouche.com/action2/HomePageInfo.ashx";
-// 获取当前城市
-util.GET(url_home,getCurrCitySuccess);
-// 获取定位城市数据成功的回调
-function getCurrCitySuccess(res){
-  cityData.currCity = res.data.UserInCity.Name;
-}
+// var url_home = "https://www.muyouche.com/action2/HomePageInfo.ashx";
+// // 获取当前城市
+// util.GET(url_home,getCurrCitySuccess);
+// // 获取定位城市数据成功的回调
+// function getCurrCitySuccess(res){
+//   cityData.currCity = res.data.UserInCity.Name;
+// }
 
 var url = "https://www.muyouche.com/action2/AllCity.ashx";
 // 使用工具方法中封装好的POST方法

@@ -75,9 +75,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // 获取城市信息数据
-    this.getAllCityData();
-
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -85,6 +82,14 @@ Page({
         });
       }
     });
+  },
+  
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    // 获取城市信息数据
+    this.getAllCityData();
   },
 
   /**
@@ -115,7 +120,8 @@ Page({
   directAssignment(){
     var theCitysList = APP.globalData.cityInfo.citys;
     var citysLetter = APP.globalData.cityInfo.citysLetter;
-    var currCity = APP.globalData.cityInfo.currCity;
+    var currCity = APP.globalData.currCityName;
+    console.log(currCity);
     this.setData({
       'citys': theCitysList,
       'citysLetter': citysLetter,
@@ -232,8 +238,11 @@ Page({
    * 确认选择城市
    */
   chooseCity(e){
+    var filter_data = wx.getStorageSync('filter_data') || {};
     wx.setStorageSync('filter_data', {
       'city': e.currentTarget.dataset.city,
+      'brandId': filter_data.brandId || "",
+      'seriesId': filter_data.seriesId || ""
     })
     // 使用js动态导航跳转
     // wx.navigateTo({

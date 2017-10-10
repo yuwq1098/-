@@ -148,6 +148,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
+    // 关闭筛选面板
+    this.closeAllPanelReal();
+
     var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
     var theCurrCity = this.data.currCity;
     // 如果当前选择城市未发生变化，则return
@@ -764,27 +767,15 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    // 如果loading动画正在显示
+    if (this.data.isShowLoading) {
+      setTimeout(() => {
+        wx.hideLoading();
+        this.setData({
+          'isShowLoading': false,
+        })
+      }, 100)
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
