@@ -102,9 +102,9 @@
 }
 .item-container .other-info .lt .CDG-label.v3{
   background: #26ccab;
-  background: -moz-linear-gradient(left, #36D4B7, #7CFDB0);
-  background: -o-linear-gradient(left, #36D4B7, #7CFDB0);
-  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#36D4B7), to(#7CFDB0));
+  background: -moz-linear-gradient(left, #2FD29D, #4DE884);
+  background: -o-linear-gradient(left, #2FD29D, #4DE884);
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#2FD29D), to(#4DE884));
 }
 .item-container .other-info .lt .CDG-name{
   display: inline-block;

@@ -1,18 +1,25 @@
 <!--pages/hall/city/city.wxml-->
 <view class="city-container">
-  <scroll-view class='scroll-view' scroll-top="{{scrollTop}}" scroll-y="true" bindscroll="scroll" style="height:{{scrollHeight}}px;">
+  <scroll-view class='scroll-view' scroll-top="{{scrollTop}}" scroll-y="{{true}}" scroll-into-view="{{toView}}"
+    style="height:{{scrollHeight}}px;">
     <view class="view-inner">
       <!-- 当前定位 -->
-      <view class="city-group curr-location">
+      <view class="city-group curr-location" id="v_dw">
         <view class="subtit">当前定位</view>
         <view class='city-wrap'>
-          <view class="c-block act_curr" catchtap='chooseCity' data-city='南昌' hover-class="act" hover-stay-time="200">
-            <text class='txt'>南昌</text>
+          <view wx:if="{{currCity.label=='定位中...'}}" class="in-the-location">
+            <text class='txt'>{{currCity.label}}</text>
+          </view>
+          <view class="c-block act_curr" wx:else 
+            catchtap='chooseCity' 
+            data-city='{{currCity.value}}' hover-class="act" hover-stay-time="200"
+          >
+            <text class='txt'>{{currCity.label}}</text>
           </view>
         </view>
       </view>
       <!-- 热门城市 -->
-      <view class="city-group hot-city">
+      <view class="city-group hot-city" id="v_rm">
         <view class="subtit">热门</view>
         <view class='city-wrap'>
           <block wx:for="{{hotCity}}" wx:item="item" wx:key="item">
@@ -23,9 +30,9 @@
         </view>
       </view>
       <!-- 所有城市 -->
-      <view class="all-city">
+      <view class="all-city" >
         <block wx:for="{{citys}}" wx:item="item" wx:key="{{index}}">
-          <view class='abc-group' data-abc='{{item.title}}'>
+          <view class='abc-group' data-abc='{{item.title}}' id="v_{{item.title}}">
             <view class="subtit">
               <view class='letter'>{{item.title}}</view>
             </view>
@@ -40,16 +47,28 @@
         </block>
       </view>
       <!-- 侧边快速定位条 -->
-      <view class="quick-lock-bar" style='height:{{quickLockHeight}}rpx'>
+      <view class="quick-lock-bar"
+        style='height:{{quickLockHeight}}rpx'>
         <view class="group-name-list">
-          <view class="item CN">定位</view>
-          <view class="item CN">热门</view>
           <block wx:for="{{citysLetter}}" wx:item="item" wx:key="item">
-            <view class="item">{{item}}</view>
+            <view class="item {{act_local==item?'act':''}}" 
+              bindtouchstart='touchIndexesStart' 
+              bindtouchend='touchIndexesEnd'
+              hover-start-time="5"
+              hover-stay-time="200"
+              data-indexes='{{item}}' data-index="{{index}}">{{item}}</view>
           </block>
         </view>
       </view>
     </view>
+    
+    <!-- 索引值展示 -->
+    <block wx:if="{{act_show}}">
+       <view class="curr-city-block">
+          <image class="pic-bg" src='/static/icon/i-current-Options.png'></image>
+          <text class="key">{{act_show_text}}</text>
+       </view>
+    </block>
 
 
   </scroll-view>

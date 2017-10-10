@@ -57,6 +57,18 @@ page{
   border-color: #f2f2f2;
   background-color: #fdfdfd;
 }
+/* 正在定位 */
+.city-group .city-wrap .in-the-location{
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 26rpx;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+  color: #31a3f5;
+  letter-spacing: 4rpx;
+  text-indent: 4rpx;
+  border-color: #f2f2f2;
+}
 .city-group .city-wrap .c-block.act:not(.act_curr){
   color: #31a3f5;
 }
@@ -108,15 +120,15 @@ page{
   flex: 1;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 0 0 16rpx;
+  padding: 0 0 8rpx;
 }
 .all-city .abc-group .city-wrap .c-link{
    /* width: 150rpx;  */
-   height: 44rpx;
+   height: 50rpx;
    text-align: left;
-   line-height: 44rpx;
-   font-size: 27rpx;
-   margin-right: 45rpx;
+   line-height: 50rpx;
+   font-size: 28rpx;
+   margin-right: 50rpx;
    margin-bottom: 15rpx;
    color: #717171;
 }
@@ -126,10 +138,10 @@ page{
 /* 文本溢出隐藏 */
 .all-city .abc-group .city-wrap .c-link .txt{
   display: block;
-  max-width: 280rpx;
+  /* max-width: 280rpx;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap; */
 }
 
 /* 热门城市 */
@@ -150,7 +162,7 @@ page{
    margin: auto;
    box-sizing: content-box;
    padding: 12rpx 0;
-   background-color: #F0F7FD;
+   /* background-color: #F0F7FD; */
    border-radius: 8rpx;
 }
 .quick-lock-bar .group-name-list{
@@ -164,6 +176,38 @@ page{
    color: #31a3f5; 
   /* color: #717171; */
 }
+.quick-lock-bar .group-name-list .item.act{
+  color: #31a3f5;
+}
 .quick-lock-bar .group-name-list .item.CN{
   font-size: 22rpx;
+}
+
+/* 索引值展示 */
+.curr-city-block{
+   width: 150rpx;
+   height: 125rpx;
+   position: fixed;
+   top: 0;
+   right: 80rpx;
+   bottom: 30rpx;
+   left: 0;
+   margin: auto;
+   z-index: 10;
+}
+.curr-city-block .pic-bg{
+  width: 100%;
+  height: 100%;
+  opacity: .95;
+}
+.curr-city-block .key{
+  width: 125rpx;
+  text-align: center;
+  height: 125rpx;
+  line-height: 125rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #f7f7f7;
+  font-size: 48rpx;
 }

@@ -1,2 +1,78 @@
 <!--pages/hall/brand/brand.wxml-->
-<text>pages/hall/brand/brand.wxml</text>
+
+<view class="brand-container">
+  <scroll-view class='scroll-view' scroll-top="{{scrollTop}}" scroll-y="{{true}}" scroll-into-view="{{toView}}" style="height:{{scrollHeight}}px;">
+    <view class="view-inner">
+      <!-- 热门品牌 -->
+      <view class="group-brand hot-brand" id="v_rm">
+        <view class="subtit">热门品牌</view>
+        <view class="hot-list">
+          <block wx:for="{{hotBrand}}" wx:item="item" wx:key="key">
+            <view class="u-item" data-brand-id='{{item.brand_id}}' hover-class="act" hover-stay-time="200">
+              <image class="pic" src="{{item.img_path}}"></image>
+              <text class="txt">{{item.brand_name}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <!-- 不限品牌 -->
+      <view class="group-brand no-limit" id="v_bx">
+        <view class="subtit">
+          <image class="icon" src='/static/icon/i-star.png'></image>
+        </view>
+        <view class="brand-list">
+          <view class="item" hover-class="act" hover-stay-time="200">
+            <view class="txt">不限品牌</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 全部品牌 -->
+      <view class="all-brand">
+        <block wx:for="{{brands}}" wx:item="item" wx:key="{{index}}">
+          <view class="group-brand" id="v_{{item.title}}">
+            <view class="subtit">{{item.title}}</view>
+            <view class="brand-list">
+              <block wx:for="{{item.items}}" wx:item="item" wx:key="item">
+                <view class="item" data-brand-id='{{item.id}}' hover-class="act" hover-stay-time="200">
+                  <image class="icon" src="{{item.imgUrl}}"></image>
+                  <text class="txt">{{item.name}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+
+      </view>
+
+      <!-- 侧边快速定位条 -->
+      <view class="quick-lock-bar" style='height:{{quickLockHeight}}rpx'>
+        <view class="group-name-list">
+          <block wx:for="{{brandsLetter}}" wx:item="item" wx:key="item">
+            <view class="item {{act_local==item?'act':''}}" 
+              bindtouchstart='touchIndexesStart'
+              bindtouchend='touchIndexesEnd'
+              hover-start-time="0"
+              hover-stay-time="200"
+              data-indexes='{{item}}' data-index="{{index}}"
+            >
+              <image wx:if="{{item=='*'}}" class="icon" src='/static/icon/i-star-act.png'></image>
+              <text wx:else class='txt'>{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+
+    </view>
+    
+    <!-- 索引值展示 -->
+    <block wx:if="{{act_show}}">
+       <view class="curr-brand-block">
+          <image class="pic-bg" src='/static/icon/i-current-Options.png'></image>
+          <text class="key">{{act_show_text}}</text>
+       </view>
+    </block>
+
+
+  </scroll-view>
+</view>

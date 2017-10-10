@@ -1,1 +1,175 @@
 /* pages/hall/brand/brand.wxss */
+
+page{
+  background-color: #fff;
+}
+
+.brand-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 可滚动视图区域 */
+.brand-container .scroll-view {
+  width: 100%;
+  height: 1300rpx;
+}
+
+.scroll-view .view-inner{
+  width: 690rpx;
+  box-sizing: border-box;
+  padding: 0 60rpx 0 0;
+}
+
+/* 品牌展示组 */
+.group-brand{
+  width: 690rpx;
+}
+.group-brand .subtit{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  background: #f2f2f2;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.group-brand .subtit .icon{
+  width: 28rpx;
+  height: 28rpx;
+}
+/* 热门品牌列表 */
+.hot-brand .hot-list{
+  width: 690rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 25rpx 0 10rpx;
+}
+.hot-brand .hot-list .u-item{
+  width: 138rpx;
+  height: 138rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 15rpx;
+}
+.hot-brand .hot-list .u-item .pic{
+  width: 76rpx;
+  height: 76rpx;
+  
+}
+.hot-brand .hot-list .u-item .txt{
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 28rpx;
+  color: #545454;
+}
+.hot-brand .hot-list .u-item.act .txt{
+  color: #31a3f5;
+}
+/* 品牌列表 */
+.group-brand .brand-list{
+  width: 690rpx;
+}
+.group-brand .brand-list .item{
+  width: 100%;
+  height: 76rpx;
+  line-height: 76rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-brand .brand-list .item:not(:last-child){
+  border-bottom: 1rpx solid #ededed;
+}
+.group-brand .brand-list .item .icon{
+  width: 54rpx;
+  height: 54rpx;
+}
+.group-brand .brand-list .item .txt{
+  margin-left: 12rpx;
+  color: #545454;
+}
+.group-brand .brand-list .item.act .txt{
+  color: #31a3f5;
+}
+
+/* 侧边快速定位条 */
+.quick-lock-bar{
+   height: 782rpx;
+   width: 60rpx;
+   position: fixed;
+   top: 0;
+   z-index: 100;
+   bottom: 50rpx;
+   right: 0;
+   margin: auto;
+   box-sizing: content-box;
+   padding: 12rpx 0;
+}
+.quick-lock-bar .group-name-list{
+   width: 60rpx;
+}
+.quick-lock-bar .group-name-list .item{
+  font-size: 24rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  text-align: center;
+  color: #31a3f5; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.quick-lock-bar .group-name-list .item .icon{
+  width: 18rpx;
+  height: 18rpx;
+}
+.quick-lock-bar .group-name-list .item.act{
+  color: #31a3f5;
+}
+.quick-lock-bar .group-name-list .item.CN{
+  font-size: 22rpx;
+}
+
+/* 索引值展示 */
+.curr-brand-block{
+   width: 150rpx;
+   height: 125rpx;
+   position: fixed;
+   top: 0;
+   right: 80rpx;
+   bottom: 30rpx;
+   left: 0;
+   margin: auto;
+   z-index: 10;
+}
+.curr-brand-block .pic-bg{
+  width: 100%;
+  height: 100%;
+  opacity: .95;
+}
+.curr-brand-block .key{
+  width: 125rpx;
+  text-align: center;
+  height: 125rpx;
+  line-height: 125rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #f7f7f7;
+  font-size: 48rpx;
+}

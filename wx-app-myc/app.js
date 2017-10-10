@@ -1,3 +1,5 @@
+const DATA = require('./utils/getData.js');
+
 //app.js
 App({
   onLaunch: function () {
@@ -33,7 +35,9 @@ App({
       }
     })
   },
+
   globalData: {
-    userInfo: null
+    userInfo: null,
+    cityInfo: DATA.cityData,
   }
 })

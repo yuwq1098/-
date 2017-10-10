@@ -4,9 +4,11 @@
     "pages/hall/index",
     "pages/welcome/welcome",
     "pages/details/details",
+    "pages/hall/brand/brand",
+    "pages/hall/city/city",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/hall/city/city",
+    
     "pages/hall/series/series"
   ],
   "window": {

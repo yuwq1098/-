@@ -127,22 +127,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    var that = this;
-    // 显示加载数据动画
-    wx.showLoading({
-      title: '数据装载中...',
-      mask: true,
-      success: function () {
-        that.setData({
-          'isShowLoading': true,
-        })
-      }
-    })
     
+    var that = this;
+    this.setData({
+      'currCity': ''
+    })
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res)
         // console.info("窗口高度（不包含头部）", res.windowHeight);
         that.setData({
           scrollHeight: res.windowHeight,
@@ -156,11 +147,27 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function (options) {
     var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
+    var theCurrCity = this.data.currCity;
+    // 如果当前选择城市未发生变化，则return
+    if (theCurrCity == currCity) return;
+
     this.setData({
       'currCity': currCity
     })
+    var that = this;
+    // 显示加载数据动画
+    wx.showLoading({
+      title: '数据装载中...',
+      mask: true,
+      success: function () {
+        that.setData({
+          'isShowLoading': true,
+        })
+      }
+    });
+    
     this.getB2bCarListInfo(this.getHallCarListSuccess);
 
   },
@@ -205,7 +212,6 @@ Page({
    */
   getHallCarListSuccess(res) {
     
-    console.log(res)
     var b2bCarList = this.normalizeB2bCarInfo(res.data);
     // 如果loading动画正在显示
     if (this.data.isShowLoading) {
@@ -237,7 +243,6 @@ Page({
    * 上拉加载新增数据的回调
    */
   getMoreDataSuccess(res) {
-    console.log(res)
     var addsCarList = this.normalizeB2bCarInfo(res.data);
     var agoCarList = this.data.b2bCarList;
     var b2bCarList = agoCarList.concat(addsCarList);
@@ -592,8 +597,8 @@ Page({
     // 边界值判断
     if (pageX < sliderMin) {
       pageX = sliderMin;
-    } else if (pageX >= this.data.sliderPositionInfo.slider_max) {
-      pageX = this.data.sliderPositionInfo.slider_max;
+    } else if (pageX >= this.data.sliderPositionInfo.slider_max * (205/240)) {
+      pageX = this.data.sliderPositionInfo.slider_max * (205 / 240);
     }
     // 两个滑块边界碰撞
     if (pageX >= this.data.theCustomPrice.p_x2 + Number(sliderMin)) {

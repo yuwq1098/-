@@ -1,1 +1,22 @@
 /* pages/hall/series/series.wxss */
+
+page{
+  background-color: #fff;
+}
+
+.city-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 可滚动视图区域 */
+.city-container .scroll-view {
+  width: 100%;
+  height: 1300rpx;
+}
+
+.scroll-view .view-inner{
+  width: 692rpx;
+  box-sizing: border-box;
+  padding: 20rpx 26rpx 10rpx;
+}

@@ -12,7 +12,7 @@
           <image src='{{item.fileUrl}}' class="slide-imageFile" mode="aspectFill"></image> 
           <!-- <view class="slide-imageFile" style="background: url('{{item.fileUrl}}') center center no-repeat; background-size: 100% auto;"></view> -->
           <view class='other'>
-            <view class='view-total'>浏览量: {{otherInfo.browseCount||0}}</view>
+            <view class='view-total'>浏览量: {{otherInfo.browseCount+1}}</view>
             <view class="curr-page">{{currSlideIndex}}/{{slidePageSize}}</view>
           </view>
         </swiper-item>
