@@ -210,13 +210,16 @@ Page({
   // 选择车辆品牌
   chooseBrand(e){
     var theBrandId = e.currentTarget.dataset.brandId;
+    var theBrandName = e.currentTarget.dataset.brandName;
     var filter_data = wx.getStorageSync('filter_data') || {}
     // 当选择不限时，直接返回，车品牌和filter_data中的 品牌和车系 置空
     if(theBrandId=='all'){
       wx.setStorageSync('filter_data', {
         'city': filter_data.city||"",
         'brandId': "",
+        'brandName': "",
         'seriesId': "",
+        'seriesName': "",
       })
       // 返回上一页
       wx.navigateBack({
@@ -225,7 +228,7 @@ Page({
     }else{
       // 使用js动态导航跳转
       wx.navigateTo({
-        url: "/pages/hall/series/series?brandId=" + theBrandId
+        url: "/pages/hall/series/series?brandId=" + theBrandId + "&brandName=" + theBrandName,
       })
     }
   },

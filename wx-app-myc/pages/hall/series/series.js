@@ -3,6 +3,8 @@ const util = require('../../../utils/util.js');
 const SERIES = require('../../../utils/class/series.js');
 
 var brandId = 0;
+var brandName = "";
+
 // pages/hall/series/series.js
 Page({
 
@@ -10,14 +12,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    // 车系列表 
+    seriesList: [],
+    brandId: 0,
+    brandName: "",
+    brandImgUrl: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    brandId = options.brandId||1;
+    // brandId = options.brandId || 1;
+    // brandName = options.brandName || '奥迪';
+    brandId = options.brandId;
+    brandName = options.brandName;
+    this.setData({
+      'brandId': brandId,
+      'brandName': brandName,
+      'brandImgUrl': `https://www.muyouche.com/carbrandimg/${brandId}.png`
+    })
   },
 
   /**
@@ -57,7 +71,39 @@ Page({
    */
   getAllSeriesDatasuccess(res){
     var seriesList = this.normalizeSeriesInfo(res.data);
-    console.log(seriesList);
+    this.setData({
+      'seriesList': seriesList,
+    })
+  },
+
+  // 选择车辆品牌
+  chooseSeries(e) {
+    var theSeriesId = e.currentTarget.dataset.seriesId;
+    var theSeriesName = e.currentTarget.dataset.seriesName;
+    var filter_data = wx.getStorageSync('filter_data') || {}
+    // 当选择不限时，直接返回，车品牌和filter_data中的 品牌和车系 置空
+    if (theSeriesId == 'all') {
+      wx.setStorageSync('filter_data', {
+        'city': filter_data.city || "",
+        'brandId': brandId,
+        'brandName': brandName,
+        'seriesId': "",
+        'seriesName': "",
+      })
+    } else {
+      // 使用js动态导航跳转
+      wx.setStorageSync('filter_data', {
+        'city': filter_data.city || "",
+        'brandId': brandId,
+        'brandName': brandName,
+        'seriesId': theSeriesId,
+        'seriesName': theSeriesName,
+      })
+    }
+    // 返回上一页
+    wx.navigateBack({
+      delta: 2
+    })
   },
 
 })

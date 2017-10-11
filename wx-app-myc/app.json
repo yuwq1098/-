@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/hall/series/series",
+    
     "pages/hall/index",
     "pages/welcome/welcome",
     "pages/details/details",
     "pages/hall/brand/brand",
-    
+    "pages/hall/series/series",
     "pages/hall/city/city",
     "pages/index/index",
     "pages/logs/logs"

@@ -45,7 +45,7 @@
           <image src='/static/icon/i-arrow-up-active.png' wx:else></image>
         </view>
         <view class='item' catchtap='brandSelection'>
-          <text>{{filterText.brand}}</text>
+          <text>{{currBrand}}</text>
           <image src='/static/icon/i-arrow-down.png'></image>
         </view>
         <view class="item {{filterData.priceChoiceIsShow==true?'active':''}}"

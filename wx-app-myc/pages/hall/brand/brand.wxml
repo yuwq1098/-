@@ -8,7 +8,10 @@
         <view class="subtit">热门品牌</view>
         <view class="hot-list">
           <block wx:for="{{hotBrand}}" wx:item="item" wx:key="key">
-            <view class="u-item" data-brand-id='{{item.brand_id}}' hover-class="act" hover-stay-time="200"
+            <view class="u-item" 
+              data-brand-id='{{item.brand_id}}'
+              data-brand-name='{{item.brand_name}}'
+              hover-class="act" hover-stay-time="200"
               catchtap='chooseBrand'>
               <image class="pic" src="{{item.img_path}}"></image>
               <text class="txt">{{item.brand_name}}</text>
@@ -36,7 +39,10 @@
             <view class="subtit">{{item.title}}</view>
             <view class="brand-list">
               <block wx:for="{{item.items}}" wx:item="item" wx:key="item">
-                <view class="item" data-brand-id='{{item.id}}' hover-class="act" hover-stay-time="200"
+                <view class="item" 
+                  data-brand-id='{{item.id}}' 
+                  data-brand-name='{{item.name}}' 
+                  hover-class="act" hover-stay-time="200"
                   catchtap='chooseBrand'>
                   <image class="icon" src="{{item.imgUrl}}"></image>
                   <text class="txt">{{item.name}}</text>

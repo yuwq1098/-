@@ -239,10 +239,13 @@ Page({
    */
   chooseCity(e){
     var filter_data = wx.getStorageSync('filter_data') || {};
+    var theCity = e.currentTarget.dataset.city;
     wx.setStorageSync('filter_data', {
-      'city': e.currentTarget.dataset.city,
+      'city': theCity,
       'brandId': filter_data.brandId || "",
-      'seriesId': filter_data.seriesId || ""
+      'brandName': filter_data.brandName || "",
+      'seriesId': filter_data.seriesId || "",
+      'seriesName': filter_data.seriesName || "",
     })
     // 使用js动态导航跳转
     // wx.navigateTo({

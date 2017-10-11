@@ -1,4 +1,42 @@
 <!--pages/hall/series/series.wxml-->
-<view>
 
+<view class="series-container">
+  <view class="view-inner">
+    <!-- 品牌信息 -->
+    <view class="brand-info">
+      <!-- 防止地址没加载，image标签就已经load造成的报错 -->
+      <block wx:if="{{brandImgUrl}}">
+        <image class="icon" src='{{brandImgUrl}}'></image>
+      </block>
+      <text class="txt">{{brandName}}</text>
+    </view>
+    <!-- 不限车系 -->
+    <view class="group-series no-limit">
+      <view class="subtit">
+        <image class="icon" src='/static/icon/i-star.png'></image>
+      </view>
+      <view class="series-list">
+        <view class="item" data-series-id="all" hover-class="act" hover-stay-time="200" catchtap='chooseSeries'>
+          <view class="txt">不限车系</view>
+        </view>
+      </view>
+    </view>
+    <!-- 全部车系 -->
+    <view class="all-series">
+      <block wx:for="{{seriesList}}" wx:item="item" wx:key="{{index}}">
+        <view class="group-series">
+          <view class="subtit">
+            <text class="txt">{{item.title}}</text>
+          </view>
+          <view class="series-list">
+            <block wx:for="{{item.items}}" wx:item="item" wx:key="item">
+              <view class="item" data-series-id='{{item.id}}' data-series-name='{{item.name}}' hover-class="act" hover-stay-time="200" catchtap='chooseSeries'>
+                <text class="txt">{{item.name}}</text>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
 </view>

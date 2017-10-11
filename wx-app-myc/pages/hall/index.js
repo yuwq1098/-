@@ -4,6 +4,8 @@ const filter = require('../../data/localJson/filter.js')
 const system = require('../../utils/system.js')
 
 const InitCurrCity = "全国";
+const InitCurrBrand = "不限品牌";
+
 // pages/hall/index.js
 Page({
 
@@ -14,6 +16,8 @@ Page({
     
     // 当前选择城市
     currCity: InitCurrCity,
+    // 当前选择车辆品牌
+    currBrand: InitCurrBrand,
     // 显示loading组件
     isShowLoading: false,
     // 轮播数据
@@ -34,6 +38,11 @@ Page({
     todayNewsCount: 0,
     // b2b大厅搜索结果 车辆列表
     b2bCarList: [],
+    
+    // 车辆品牌Id
+    currBrandId: "",
+    // 车系Id
+    currSeriesId: "",
 
     // 当前加载的页数
     currPageIndex: 1,
@@ -152,12 +161,34 @@ Page({
     this.closeAllPanelReal();
 
     var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
+    var theBrandId = wx.getStorageSync('filter_data').brandId || "";
+    var theBrandName = wx.getStorageSync('filter_data').brandName || "";
+    var theSeriesId = wx.getStorageSync('filter_data').seriesId || "";
+    var theSeriesName = wx.getStorageSync('filter_data').seriesName || "";
+    
+    // 设置所选城市展示文本
+    var currCity = wx.getStorageSync('filter_data').city || InitCurrCity;
     var theCurrCity = this.data.currCity;
-    // 如果当前选择城市未发生变化，则return
-    if (theCurrCity == currCity) return;
+    
+    // 设置所选品牌展示文本
+    var currBrand = "";
+    if (!!theBrandId == false){
+      currBrand = InitCurrBrand;
+    } else if (!!theBrandId && !!theSeriesId == false){
+      currBrand = theBrandName;
+    } else{
+      currBrand = theSeriesName;
+    }
+    var theCurrCity = this.data.currBrand;
+
+    // 如果（当前选择城市）&（当前选择品牌）未发生变化，则return
+    if (theCurrCity == currCity && theCurrCity == currBrand) return;
 
     this.setData({
-      'currCity': currCity
+      'currCity': currCity,
+      'currBrand': currBrand,
+      'currBrandId': theBrandId,
+      'currSeriesId': theSeriesId,
     })
     var that = this;
     // 显示加载数据动画
@@ -194,8 +225,9 @@ Page({
     var data = {
 
       CarInCity: this.data.currCity == "全国" ? "" : this.data.currCity,
-      // CarSeriesId: "",
-      Color: "",
+      CarBrandId: this.data.currBrandId || "",
+      CarSeriesId: this.data.currSeriesId ||"",
+      // Color: "",
       DischargeStandard: this.data.searchFilterData.DischargeStandard || "",
       PageIndex: this.data.currPageIndex,
       PageSize: this.data.listPageSize,
