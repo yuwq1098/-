@@ -143,3 +143,9 @@
   </view>
 
 </view>
+
+<!-- 底部拓展功能 -->
+<view class="bottom-func">
+   <view class="item know" bindtap="knowRules">了解平台规则</view>
+   <view class="item call-up" bindtap='toCallHotLine'>电话咨询</view>
+</view>

@@ -1,12 +1,12 @@
 {
   "pages": [
-    
-    "pages/hall/index",
     "pages/welcome/welcome",
+    "pages/hall/index",
     "pages/details/details",
     "pages/hall/brand/brand",
     "pages/hall/series/series",
     "pages/hall/city/city",
+    "pages/video/video",
     "pages/index/index",
     "pages/logs/logs"
   ],

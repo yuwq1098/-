@@ -695,7 +695,7 @@ Page({
     var search_max = "";
     // 设置自定义的文本
     var theCustomPriceText = "";
-    if (min == 0 && max == "120") {
+    if (min == 0 && max == "120" || min == 0 && max == 0) {
       theCustomPriceText = "不限价格"
     } else if (min == 0 && max != "120") {
       theCustomPriceText = max + "万以下";

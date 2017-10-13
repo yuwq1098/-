@@ -20,7 +20,7 @@ var allCityList = [],
 // }
 
 var url = "https://www.muyouche.com/action2/AllCity.ashx";
-// 使用工具方法中封装好的POST方法
+// 使用工具方法中封装好的GET方法
 util.GET(url, getAllCityDatasuccess);
 
 

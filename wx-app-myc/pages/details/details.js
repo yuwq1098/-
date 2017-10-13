@@ -280,6 +280,23 @@ Page({
       'isShowAllView': true,
     });
   },
+  
+  // 了解平台规则
+  knowRules(){
+    // 使用js动态导航跳转
+    wx.navigateTo({
+      url: "/pages/video/video"
+    })
+  },
+  
+  /**
+   * 拨打热线
+   */
+  toCallHotLine(){
+    wx.makePhoneCall({
+      phoneNumber: '4009009936' //仅为示例，并非真实的电话号码
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

@@ -3,6 +3,10 @@
 page {
   background: #f2f2f2;
 }
+/* 详情页容器 */
+.datails-container{
+  padding: 0 0 100rpx;
+}
 
 /* 轮播区域 */
 
@@ -391,4 +395,46 @@ page {
 .main-box .btn-box .all-view-btn:active{
   background-color: #f7f7f7;
   color: #333;
+}
+/* 底部拓展功能 */
+.bottom-func{
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background: #fff;
+  justify-content: space-between;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+.bottom-func .item{
+  width: 346rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 30rpx;
+  letter-spacing: 6rpx;
+  text-indent: 6rpx;
+  border: 1rpx solid #ededed;
+}
+.bottom-func .know{
+  color: #333;
+  border-radius: 20rpx 2rpx 2rpx 20rpx; 
+  background-color: #fff;
+  border-color: #f2f2f2;
+}
+.bottom-func .call-up{
+  border-radius: 2rpx 20rpx 20rpx 2rpx; 
+  color: #fff;
+  background: #29d;
+  background: -moz-linear-gradient(left, #ffac63, #f34242);
+  background: -o-linear-gradient(left, #ffac63, #f34242);
+  background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#ffac63), to(#f34242));
+  border-color: #F75C38;
 }

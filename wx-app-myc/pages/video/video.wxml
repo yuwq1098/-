@@ -1,0 +1,27 @@
+<!--pages/video/video.wxml-->
+<!-- 视频容器 -->
+<view class="video-container">
+  <view class="video-list">
+    <block wx:for="{{videos}}" wx:item="item" wx:key="{{index}}">
+      <view class="item">
+        <!-- 视频 -->
+        <view class="video-wrap">
+          <view class="poster-wrap" wx:if="{{!playingList[index]}}" data-vindex="{{index}}" bindtap='enterPlayer'>
+              <image class="poster-pic" src='{{item.poster}}'></image>
+              <image class="play-icon" src='/static/icon/u-video-btn.png'></image>
+          </view>
+          <block wx:else>
+              <video id="v_0{{index+1}}" poster="{{item.poster}}" src="{{item.url}}" objectFit="fill" controls autoplay></video>
+          </block>
+        </view>
+        <!-- 内容 -->
+        <view class="u-content">
+          <!-- 出处 -->
+          <view class='author'>{{item.author}}</view>
+          <view class="title">{{item.title}}</view>
+        </view>
+
+      </view>
+    </block>
+  </view>
+</view>
